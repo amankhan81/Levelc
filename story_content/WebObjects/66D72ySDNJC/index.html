@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unit 4 Vocabulary with Audio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f7f9fb;
+        }
+        .vocab-card {
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.06);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .vocab-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.05);
+        }
+        .play-btn {
+            background-color: #4f46e5;
+            color: white;
+            transition: background-color 0.15s;
+        }
+        .play-btn:hover:not(:disabled) {
+            background-color: #4338ca;
+        }
+        .play-btn:disabled {
+            background-color: #a5b4fc;
+            cursor: not-allowed;
+        }
+        .loader {
+            border: 3px solid #f3f3f3;
+            border-top: 3px solid #4f46e5;
+            border-radius: 50%;
+            width: 18px;
+            height: 18px;
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body class="p-4 md:p-8">
+
+    <div class="max-w-4xl mx-auto">
+        <header class="text-center mb-8 p-4 bg-white rounded-xl shadow-lg">
+            <h1 class="text-4xl font-extrabold text-blue-800 tracking-tight">Unit 4 Vocabulary with Audio</h1>
+            <p class="text-lg text-gray-600 mt-2">Click the play button to hear the pronunciation!</p>
+        </header>
+
+        <main class="grid gap-6" id="vocabulary-list">
+            <!-- Vocabulary Cards will be inserted here by JavaScript -->
+        </main>
+
+        <footer class="text-center mt-10 p-4 text-gray-500 text-sm">
+            <p>Audio provided by Gemini Text-to-Speech API.</p>
+        </footer>
+    </div>
+
+    <script>
+        // --- TTS and API Logic ---
+        const apiKey = ""; // API Key is automatically provided by the environment
+        const apiUrlBase = "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-tts:generateContent?key=";
+        const TTS_MODEL = "gemini-2.5-flash-preview-tts";
+        
+        // Zephyr for clear, standard American pronunciation
+        const VOICE_NAME = "Zephyr"; 
+
+        // Utility function: Converts Base64 string to ArrayBuffer
+        function base64ToArrayBuffer(base64) {
+            const binaryString = atob(base64);
+            const len = binaryString.length;
+            const bytes = new Uint8Array(len);
+            for (let i = 0; i < len; i++) {
+                bytes[i] = binaryString.charCodeAt(i);
+            }
+            return bytes.buffer;
+        }
+
+        // Utility function: Converts signed PCM 16-bit audio to WAV Blob
+        function pcmToWav(pcm16, sampleRate) {
+            const numChannels = 1;
+            const bytesPerSample = 2;
+            const buffer = new ArrayBuffer(44 + pcm16.length * bytesPerSample);
+            const view = new DataView(buffer);
+
+            // RIFF chunk
+            writeString(view, 0, 'RIFF');
+            view.setUint32(4, 36 + pcm16.length * bytesPerSample, true);
+            writeString(view, 8, 'WAVE');
+
+            // FMT chunk
+            writeString(view, 12, 'fmt ');
+            view.setUint32(16, 16, true);              // Chunk Size (16 for PCM)
+            view.setUint16(20, 1, true);               // Audio format (1 for PCM)
+            view.setUint16(22, numChannels, true);     // Number of Channels
+            view.setUint32(24, sampleRate, true);      // Sample Rate
+            view.setUint32(28, sampleRate * numChannels * bytesPerSample, true); // Byte Rate
+            view.setUint16(32, numChannels * bytesPerSample, true); // Block Align
+            view.setUint16(34, 16, true);              // Bits per sample (16)
+
+            // DATA chunk
+            writeString(view, 36, 'data');
+            view.setUint32(40, pcm16.length * bytesPerSample, true); // Data size
+
+            // Write PCM data (Int16Array ensures correct signed 16-bit writing)
+            let offset = 44;
+            for (let i = 0; i < pcm16.length; i++, offset += 2) {
+                view.setInt16(offset, pcm16[i], true); // true = little endian
+            }
+
+            return new Blob([buffer], { type: 'audio/wav' });
+        }
+
+        function writeString(view, offset, string) {
+            for (let i = 0; i < string.length; i++) {
+                view.setUint8(offset + i, string.charCodeAt(i));
+            }
+        }
+
+        // Main function to fetch and play audio
+        async function generateAudio(word, button) {
+            button.disabled = true;
+            const originalContent = button.innerHTML;
+            button.innerHTML = '<div class="loader mx-2"></div>'; // Show loading spinner
+
+            // Use SSML to explicitly set a medium rate for a more natural pronunciation pace.
+            const ssmlText = `<speak><prosody rate="medium">The word is ${word}.</prosody></speak>`;
+
+            const payload = {
+                contents: [{
+                    // NOTE: The model accepts SSML, which is XML-based
+                    parts: [{ text: ssmlText }] 
+                }],
+                generationConfig: {
+                    responseModalities: ["AUDIO"],
+                    speechConfig: {
+                        voiceConfig: {
+                            prebuiltVoiceConfig: { voiceName: VOICE_NAME }
+                        }
+                    }
+                },
+                model: TTS_MODEL
+            };
+
+            const fullUrl = apiUrlBase + apiKey;
+
+            // Exponential backoff retry logic
+            for (let attempt = 0; attempt < 3; attempt++) {
+                try {
+                    const response = await fetch(fullUrl, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(payload)
+                    });
+
+                    if (!response.ok) {
+                        if (response.status === 429 && attempt < 2) {
+                            const delay = Math.pow(2, attempt) * 1000;
+                            console.warn(`Rate limit hit, retrying in ${delay / 1000}s...`);
+                            await new Promise(resolve => setTimeout(resolve, delay));
+                            continue;
+                        }
+                        throw new Error(`API call failed with status: ${response.status}`);
+                    }
+
+                    const result = await response.json();
+                    
+                    // Look for the part containing inlineData which holds the audio
+                    const audioPart = result?.candidates?.[0]?.content?.parts?.find(p => p.inlineData && p.inlineData.mimeType.startsWith('audio/'));
+                    
+                    if (audioPart) {
+                        const audioData = audioPart.inlineData.data;
+                        const mimeType = audioPart.inlineData.mimeType;
+
+                        const sampleRateMatch = mimeType.match(/rate=(\d+)/);
+                        const sampleRate = sampleRateMatch ? parseInt(sampleRateMatch[1], 10) : 16000;
+                        
+                        const pcmData = base64ToArrayBuffer(audioData);
+                        const pcm16 = new Int16Array(pcmData);
+                        const wavBlob = pcmToWav(pcm16, sampleRate);
+                        const audioUrl = URL.createObjectURL(wavBlob);
+
+                        const audio = new Audio(audioUrl);
+                        audio.play();
+                        
+                        // Clean up after playing
+                        audio.onended = () => {
+                            URL.revokeObjectURL(audioUrl);
+                        };
+
+                        break; // Success, exit retry loop
+                    } else {
+                        console.error("API response missing expected audio data structure. Full result:", result);
+                        alertUser('Could not generate audio due to an unexpected API response format.');
+                        break; 
+                    }
+
+                } catch (error) {
+                    console.error('Error generating audio:', error);
+                    if (attempt === 2) {
+                         alertUser('Could not generate audio after several attempts. Please try again later.');
+                    }
+                }
+            }
+
+            // Restore button state
+            button.innerHTML = originalContent;
+            button.disabled = false;
+        }
+
+        // Custom alert function (since window.alert is disallowed)
+        function alertUser(message) {
+            const existingAlert = document.getElementById('custom-alert');
+            if (existingAlert) existingAlert.remove();
+
+            const alertDiv = document.createElement('div');
+            alertDiv.id = 'custom-alert';
+            alertDiv.className = 'fixed top-4 right-4 bg-red-600 text-white p-4 rounded-lg shadow-xl z-50 transition-opacity duration-300';
+            alertDiv.textContent = message;
+            document.body.appendChild(alertDiv);
+
+            setTimeout(() => {
+                alertDiv.style.opacity = '0';
+                setTimeout(() => alertDiv.remove(), 300);
+            }, 5000);
+        }
+
+        // --- Data and Rendering Logic ---
+
+        const vocabularyData = [
+            { word: "ANNUL", meaning: "To reduce to nothing; to make ineffective or inoperative; to declare legally invalid or void.", synonyms: "cancel, abolish, invalidate, nullify.", antonyms: "validate, authorize, ratify.", example: "The state legislature voted to annul the outdated law.", color: "red" },
+            { word: "BLASÉ", meaning: "Indifferent, bored as a result of having enjoyed many pleasures; apathetic.", synonyms: "unconcerned, nonchalant, indifferent.", antonyms: "enthusiastic, passionate, interested.", example: "After traveling the world, he had a blasé attitude towards exotic foods.", color: "blue" },
+            { word: "BOLSTER", meaning: "To support, give a boost to; (n.) a long pillow or cushion; a supporting post.", synonyms: "strengthen, reinforce, buttress, support.", antonyms: "undermine, weaken, impair.", example: "The coach gave a pep talk to bolster the team's morale.", color: "green" },
+            { word: "DEPLORE", meaning: "To feel or express regret or disapproval.", synonyms: "lament, bewail, bemoan.", antonyms: "approve, commend, extol.", example: "We deplore all forms of discrimination and violence.", color: "purple" },
+            { word: "FRIVOLOUS", meaning: "Of little importance, not worthy of serious attention; not serious or sober.", synonyms: "silly, trivial, piddling, petty.", antonyms: "serious, important, significant.", example: "He spent his money on frivolous purchases like novelty hats.", color: "orange" },
+            { word: "MUSTER", meaning: "To bring together for service or battle; to gather or summon; to amount to, comprise, include.", synonyms: "mobilize, marshal, gather, summon.", antonyms: "disband, dismiss, disperse.", example: "They struggled to muster enough support for the petition.", color: "red" },
+            { word: "NONENTITY", meaning: "A person or thing of no importance.", synonyms: "nobody, cypher, unknown.", antonyms: "celebrity, luminary, important person.", example: "To the wealthy socialites, the artist was a complete nonentity.", color: "blue" },
+            { word: "OBSESS", meaning: "To trouble, haunt, or fill the mind.", synonyms: "preoccupy, consume, fixate on.", antonyms: "ignore, disregard, be indifferent to.", example: "Don't obsess over small details, focus on the bigger picture.", color: "green" },
+            { word: "ORNATE", meaning: "Elaborately decorated; showily splendid.", synonyms: "fancy, elaborate, fussy, flamboyant.", antonyms: "plain, simple, unadorned, austere.", example: "The church was known for its ornate gold carvings and stained glass.", color: "purple" },
+            { word: "OUST", meaning: "To remove, drive out of a position or place.", synonyms: "expel, eject, unseat, depose.", antonyms: "admit, welcome, retain.", example: "The board voted to oust the corrupt CEO.", color: "orange" },
+            { word: "PERUSE", meaning: "To read thoroughly and carefully.", synonyms: "study, scrutinize, examine, pore over.", antonyms: "skim, scan, glance at.", example: "The lawyer took time to peruse the lengthy legal document.", color: "red" },
+            { word: "POROUS", meaning: "Full of tiny holes; able to be penetrated by air or water.", synonyms: "permeable, penetrable, holey, leaky.", antonyms: "impermeable, waterproof, airtight.", example: "The porous rock quickly absorbed the rainwater.", color: "blue" },
+            { word: "PROMONTORY", meaning: "A high point of land extending into water.", synonyms: "headland, cliff, cape, jutty.", antonyms: "bay, cove, inlet.", example: "We stood on the promontory, gazing at the distant lighthouse.", color: "green" },
+            { word: "PRONE", meaning: "Lying face down; inclined, likely.", synonyms: "prostrate, liable, apt, inclined.", antonyms: "standing, upright, unlikely.", example: "He was prone to making hasty decisions when he was stressed.", color: "purple" },
+            { word: "QUALM", meaning: "A pang of conscience, uneasiness, misgiving, or doubt; a feeling of faintness or nausea.", synonyms: "misgiving, doubt, scruple, apprehension.", antonyms: "confidence, assurance, ease.", example: "She had a qualm about accepting the expensive gift.", color: "orange" },
+            { word: "RECOURSE", meaning: "A person or thing turned to for help or protection; the act of seeking help or protection.", synonyms: "resort, remedy, option, alternative.", antonyms: "avoidance, restraint.", example: "Filing a lawsuit was his final recourse after the negotiations failed.", color: "red" },
+            { word: "RESIDUE", meaning: "A remainder, that which remains when a part has been used up or removed.", synonyms: "remainder, remnant, remains, leavings.", antonyms: "whole, entirety, core.", example: "A sticky residue was left on the table after the soda spilled.", color: "blue" },
+            { word: "SOLICITOUS", meaning: "Showing concern or care; fearful or anxious about someone or something.", synonyms: "concerned, caring, attentive, anxious.", antonyms: "unconcerned, indifferent, apathetic.", example: "The solicitous nurse checked on the patient hourly throughout the night.", color: "green" },
+            { word: "STAID", meaning: "Serious and dignified; quiet or subdued in character or conduct.", synonyms: "sedate, sober, prim, unadventurous.", antonyms: "frivolous, gaudy, jaunty, unconventional.", example: "The staid professor rarely showed emotion, even during exciting discoveries.", color: "purple" },
+            { word: "SUSTAIN", meaning: "To support, nourish, keep up; to suffer, undergo; to bear up under, withstand; to affirm the validity of.", synonyms: "support, maintain, uphold, endure.", antonyms: "hinder, undermine, halt.", example: "The local economy relies on tourism to sustain the community.", color: "orange" },
+        ];
+
+        function renderVocabulary() {
+            const container = document.getElementById('vocabulary-list');
+            container.innerHTML = vocabularyData.map((item, index) => {
+                // Ensure all Tailwind classes used here are present in the CSS utility list for correct coloring
+                const colorClassMap = {
+                    "red": "border-red-500", "blue": "border-blue-500", "green": "border-green-500", 
+                    "purple": "border-purple-500", "orange": "border-orange-500"
+                };
+                const titleColorClassMap = {
+                    "red": "text-red-700", "blue": "text-blue-700", "green": "text-green-700", 
+                    "purple": "text-purple-700", "orange": "text-orange-700"
+                };
+                
+                const colorClass = `border-l-4 ${colorClassMap[item.color] || 'border-gray-500'}`;
+                const titleColorClass = titleColorClassMap[item.color] || 'text-gray-700';
+
+                // Add example if missing (only affects the rendering of new items)
+                const exampleText = item.example ? item.example : "No example provided.";
+                
+                return `
+                    <div class="vocab-card bg-white p-6 rounded-xl ${colorClass}">
+                        <div class="flex justify-between items-center mb-2">
+                            <h2 class="text-2xl font-bold ${titleColorClass}">
+                                ${index + 1}. ${item.word}
+                            </h2>
+                            <button 
+                                class="play-btn p-2 rounded-full flex items-center justify-center text-sm font-semibold shadow-md hover:shadow-lg"
+                                onclick="generateAudio('${item.word}', this)"
+                            >
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M7 6v12l10-6z" />
+                                </svg>
+                            </button>
+                        </div>
+                        <p class="mt-2 text-gray-800"><span class="font-semibold">Meaning:</span> ${item.meaning}</p>
+                        <p class="mt-1 text-sm text-green-600"><span class="font-semibold">Synonyms:</span> ${item.synonyms}</p>
+                        <p class="mt-1 text-sm text-yellow-600"><span class="font-semibold">Antonyms:</span> ${item.antonyms}</p>
+                        <p class="mt-2 text-sm italic text-gray-500">Example: ${exampleText}</p>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        // Initialize on load
+        window.onload = renderVocabulary;
+    </script>
+</body>
+</html>
