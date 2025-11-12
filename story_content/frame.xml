@@ -11,9 +11,9 @@
     <optiongroups>
       <optiongroup name="sidebaroptions">
         <options>
-          <option name="title_enabled" value="true">
+          <option name="title_enabled" value="false">
             <options>
-              <option name="title_text" value="Sadlier Vocabulary Level C" />
+              <option name="title_text" value="Sadlier Vocabulary Level C Grade 8" />
             </options>
           </option>
           <option name="logo_enabled" value="false">
@@ -75,6 +75,7 @@
           </option>
           <option name="settings" value="false" />
           <option name="fullScreenToggle" value="false" />
+          <option name="playbackSpeedControl" value="false" />
         </options>
       </optiongroup>
       <optiongroup name="bottombaroptions">
@@ -1283,11 +1284,11 @@
   <nav_data>
     <outline>
       <links>
-        <slidelink slideid="_player.6VFgkv4b6sR" displaytext="Untitled Scene" expand="true" type="slide">
+        <slidelink slideid="_player.5kNnE8QefaO" displaytext="Untitled Scene" expand="true" type="slide">
           <links>
-            <slidelink slideid="_player.6VFgkv4b6sR.6Ml6mUIQ4Ur" displaytext="Home" expand="false" type="slide" />
-            <slidelink slideid="_player.6VFgkv4b6sR.5ZffOJX9TIK" displaytext="About&#xA;" expand="false" type="slide" />
-            <slidelink slideid="_player.6VFgkv4b6sR.5ve5gaNq3Dp" displaytext="U-4" expand="false" type="slide" />
+            <slidelink slideid="_player.5kNnE8QefaO.6F7W25MVHry" displaytext="Home" expand="false" type="slide" />
+            <slidelink slideid="_player.5kNnE8QefaO.6KurKOTfeOV" displaytext="About&#xA;" expand="false" type="slide" />
+            <slidelink slideid="_player.5kNnE8QefaO.5XGtTH4lzC4" displaytext="U-5" expand="false" type="slide" />
           </links>
         </slidelink>
       </links>
