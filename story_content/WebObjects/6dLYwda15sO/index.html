@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unit 8 Vocabulary</title>
+    <!-- Load Tailwind CSS --><script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        // Defined colors for the cycle
+                        'primary-blue': '#3b82f6', // Blue
+                        'accent-green': '#10b981', // Green (Used for Synonyms and Cycle)
+                        'accent-red': '#ef4444',   // Red (Used for Antonyms and Cycle)
+                        'secondary-gray': '#f3f4f6',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+        
+        .vocab-card {
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.06);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .vocab-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+        .play-button {
+            background-color: #6366f1; /* Indigo */
+            color: white;
+            transition: background-color 0.15s, transform 0.1s;
+        }
+        .play-button:hover:not(:disabled) {
+            background-color: #4f46e5;
+        }
+        .vocab-icon {
+            font-size: 1.75rem; /* 28px */
+            line-height: 1;
+        }
+    </style>
+</head>
+<body class="bg-secondary-gray min-h-screen font-sans p-4 md:p-8">
+
+    <div id="message-box" class="fixed top-4 right-4 z-50 transition-opacity duration-300 opacity-0 hidden">
+        <div class="bg-red-500 text-white px-4 py-2 rounded-lg shadow-xl font-semibold"></div>
+    </div>
+
+    <header class="text-center mb-10">
+        <h1 class="text-4xl font-extrabold text-gray-800 mb-2">Unit 8 Vocabulary</h1>
+        <p class="text-xl text-gray-600">Sight, Sound, and Mastery</p>
+    </header>
+
+    <main class="max-w-4xl mx-auto">
+        
+        <!-- Vocabulary List Section: Now a single column --><div id="vocabulary-list" class="grid grid-cols-1 gap-6 mb-16">
+            <!-- Vocabulary cards will be injected here --></div>
+    </main>
+
+    <script>
+        // Data for Unit 8 (All entry words are maintained in lowercase)
+        const UNIT_8_WORDS = [
+            { word: "abut", emoji: "🧱", meaning: "To join at one end or be next to; to support, prop up.", example: "The parking lot for the school will abut the new running track.", synonyms: "border on, bolster, buttress", antonyms: "separate, detach, disconnect" },
+            { word: "attire", emoji: "👔", meaning: "Clothes, apparel, garb; to dress, adorn, or bedeck.", example: "The party guests were asked to wear formal attire; the bride will attire herself in a traditional gown.", synonyms: "clothing, gear, dress, array", antonyms: "undress, disrobe, remove" },
+            { word: "avail", emoji: "🤝", meaning: "To be of use or benefit to; to make use of; use, benefit, or value.", example: "The doctor’s advice was of great avail to the patient; she decided to avail herself of the opportunity.", synonyms: "profit, benefit, help, serve, usefulness", antonyms: "hinder, impede, obstruct" },
+            { word: "crony", emoji: "👥", meaning: "A close friend, companion, or sidekick.", example: "The politician was surrounded by loyal cronies who had known him since college.", synonyms: "pal, buddy, chum, sidekick", antonyms: "adversary, rival, enemy, foe" },
+            { word: "cryptic", emoji: "❓", meaning: "Puzzling, mystifying, or enigmatic.", example: "The treasure map contained cryptic symbols that only an expert could decipher.", synonyms: "puzzling, baffling, obscure, mysterious", antonyms: "crystal clear, unambiguous, plain" },
+            { word: "divergent", emoji: "↔️", meaning: "Going in different directions; deviating from a standard or norm.", example: "The two historians came to divergent conclusions about the cause of the war.", synonyms: "differing, unorthodox, contrary", antonyms: "merging, intersecting, conventional" },
+            { word: "enmity", emoji: "⚔️", meaning: "Deep-seated hostility, ill-will.", example: "The decades of fighting had created great enmity between the two neighboring nations.", synonyms: "hostility, animosity, antagonism, ill will", antonyms: "friendship, amity, goodwill" },
+            { word: "fervent", emoji: "🔥", meaning: "Very earnest, emotional, passionate; extremely hot.", example: "He gave a fervent speech that moved the entire audience to tears.", synonyms: "ardent, passionate, zealous, earnest", antonyms: "apathetic, emotionless, dull, restrained" },
+            { word: "gaunt", emoji: "🦴", meaning: "Thin and bony, starved looking; bare, barren.", example: "The survivor looked gaunt after weeks lost in the wilderness.", synonyms: "lean, scrawny, lanky, all skin and bones", antonyms: "plump, corpulent, stout, well-fed" },
+            { word: "infiltrate", emoji: "🕵️", meaning: "To pass through or gain entrance secretly or gradually.", example: "The spy was able to infiltrate the enemy's organization by posing as a cleaner.", synonyms: "sneak into, penetrate, slip into, worm one's way into", antonyms: "withdraw, exfiltrate, retreat" },
+            { word: "nullify", emoji: "🚫", meaning: "To make of no value or consequence, cancel, wipe out.", example: "The judge threatened to nullify the contract due to the fraudulent signatures.", synonyms: "cancel, annul, invalidate, wipe out", antonyms: "confirm, endorse, ratify, sanction" },
+            { word: "perceptible", emoji: "👀", meaning: "Capable of being grasped by the senses or mind.", example: "The temperature drop was barely perceptible, but enough to make her shiver.", synonyms: "noticeable, discernible, observable", antonyms: "invisible, unnoticeable, undetectable" },
+            { word: "plummet", emoji: "📉", meaning: "To plunge straight down a great distance.", example: "The stock price is expected to plummet after the announcement of poor quarterly earnings.", synonyms: "take a nosedive, plunge, drop sharply", antonyms: "soar, skyrocket, ascend, climb" },
+            { word: "proclaim", emoji: "📢", meaning: "To declare publicly or officially.", example: "The mayor will proclaim the new library open on Friday afternoon.", synonyms: "announce, promulgate, herald, declare", antonyms: "conceal, hide, keep secret, whisper" },
+            { word: "proxy", emoji: "👤", meaning: "An agent, substitute; a written authorization to act in place of another.", example: "Since the CEO was ill, his proxy attended the shareholder meeting and cast the vote.", synonyms: "deputy, representative, substitute, agent", antonyms: "principal, original, self" },
+            { word: "rankle", emoji: "😤", meaning: "To cause anger, irritation, or bitterness.", example: "The unfair decision continued to rankle the team members for weeks after the game.", synonyms: "irk, vex, nettle, gall, chafe", antonyms: "please, delight, gratify, soothe" },
+            { word: "scavenger", emoji: "🦅", meaning: "A person who searches for and collects discarded items; an animal that feeds on dead organic matter.", example: "The city's waste dumps are often frequented by scavengers looking for useful materials.", synonyms: "forager, rummager, hunter-gatherer", antonyms: "creator, producer, generator" },
+            { word: "stint", emoji: "⌛", meaning: "To limit, be sparing or frugal; a limit or restriction; a fixed period of work.", example: "The workers complained that the management would stint on safety equipment; she completed a three-year stint in the Navy.", synonyms: "restrict, ration, assignment, tour of duty", antonyms: "splurge, lavish, squander, indulgence" },
+            { word: "stoical", emoji: "🗿", meaning: "Self-controlled, not showing feeling in response to pleasure or pain.", example: "The old soldier remained stoical, even when the news of his injuries was delivered.", synonyms: "unresponsive, impassive, emotionless", antonyms: "excitable, emotional, high-strung" },
+            { word: "unflagging", emoji: "🔋", meaning: "Tireless, continuing with vigor.", example: "The volunteer group showed unflagging dedication to cleaning up the local park every weekend.", synonyms: "tireless, undiminished, persistent, continuous", antonyms: "diminishing, flagging, slackening, yielding" }
+        ];
+
+        // --- Static Audio Playback Logic ---
+
+        function playStaticAudio(word) {
+            const wordLower = word.toLowerCase();
+            const audioId = `audio-${wordLower}`;
+            const audio = document.getElementById(audioId);
+            
+            if (audio) {
+                audio.pause();
+                audio.currentTime = 0;
+                audio.play();
+            } else {
+                // Use the custom message box for feedback
+                alertUser(`Audio file for "${wordLower}.mp3" not found. Please ensure the file is in the same folder.`);
+            }
+        }
+
+        // Custom alert function
+        function alertUser(message) {
+            const box = document.getElementById('message-box');
+            const content = box.querySelector('div');
+            
+            content.textContent = message;
+            box.classList.remove('hidden', 'opacity-0');
+            box.classList.add('opacity-100', 'bg-red-500');
+
+            clearTimeout(box.timer);
+            box.timer = setTimeout(() => {
+                box.classList.remove('opacity-100');
+                box.classList.add('opacity-0');
+                setTimeout(() => box.classList.add('hidden'), 300);
+            }, 3000);
+        }
+        
+        // --- Rendering Logic ---
+
+        function renderVocabularyList() {
+            const container = document.getElementById('vocabulary-list');
+            
+            // Define the color cycle classes
+            const colorClasses = [
+                { text: 'text-primary-blue', border: 'border-primary-blue' }, // Blue
+                { text: 'text-accent-green', border: 'border-accent-green' }, // Green
+                { text: 'text-accent-red', border: 'border-accent-red' }      // Red
+            ];
+
+            container.innerHTML = UNIT_8_WORDS.map((item, index) => {
+                
+                const cycleIndex = index % colorClasses.length;
+                const colorSet = colorClasses[cycleIndex];
+                
+                const colorClass = `border-l-4 ${colorSet.border}`;
+                const titleColorClass = colorSet.text;
+                const highlightColorClass = colorSet.text; // Use the same color for highlight
+
+                // The entry word is now explicitly lowercase
+                const wordLower = item.word.toLowerCase();
+                const audioPath = `${wordLower}.mp3`;
+                
+                // Robust Regex to highlight the root word and common inflections (like 'abut' -> 'abutting')
+                // This must use the original item.word since the highlight logic expects the root word
+                const exampleRegex = new RegExp(`\\b${item.word}\\w*\\b`, 'gi');
+                const highlightedExample = item.example.replace(exampleRegex, 
+                    `<span class="font-bold ${highlightColorClass}">$&</span>`
+                );
+                
+
+                return `
+                    <div class="vocab-card bg-white p-6 rounded-xl ${colorClass}">
+                        <div class="flex justify-between items-start mb-3">
+                            <!-- Word and Icon --><div class="flex items-center space-x-3">
+                                <h2 class="text-2xl font-bold ${titleColorClass}">
+                                    ${index + 1}. ${wordLower}
+                                </h2>
+                                <span class="vocab-icon" title="Illustration for ${wordLower}">${item.emoji}</span>
+                            </div>
+
+                            <!-- Play button (Speaker icon) --><button 
+                                class="play-button p-3 rounded-full flex-shrink-0 flex items-center justify-center text-sm font-semibold shadow-md hover:shadow-lg"
+                                onclick="playStaticAudio('${wordLower}')"
+                                aria-label="Play pronunciation for ${wordLower}"
+                            >
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-volume-2">
+                                    <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/>
+                                    <path d="M15.54 8.46a5 5 0 0 1 0 7.07"/>
+                                    <path d="M19.07 4.93a10 10 0 0 1 0 14.14"/>
+                                </svg>
+                            </button>
+                            <!-- Hidden Audio Element --><audio id="audio-${wordLower}" class="hidden">
+                                <source src="${audioPath}" type="audio/mpeg">
+                            </audio>
+                        </div>
+                        
+                        <!-- 1. Meaning --><p class="mt-1 text-gray-800"><span class="font-semibold text-gray-900">Meaning:</span> ${item.meaning}</p>
+                        
+                        <!-- 2. Example --><p class="mt-3 text-base italic text-gray-700">
+                           <span class="font-semibold not-italic text-gray-900">Example:</span> ${highlightedExample}
+                        </p>
+                        
+                        <!-- 3. Synonyms (Now Green) --><p class="mt-3 text-sm text-accent-green"><span class="font-semibold text-gray-900">Synonyms:</span> ${item.synonyms}</p>
+
+                        <!-- 4. Antonyms (Now Red) --><p class="mt-1 text-sm text-accent-red"><span class="font-semibold text-gray-900">Antonyms:</span> ${item.antonyms}</p>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        // Initialize on load
+        window.onload = renderVocabularyList;
+    </script>
+</body>
+</html>
