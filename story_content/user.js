@@ -2,26 +2,53 @@ function ExecuteScript(strId)
 {
   switch (strId)
   {
-      case "6gGaGa4vOqt":
+      case "5swkZdf7rt6":
         Script1();
         break;
-      case "5mxlTdZlydX":
+      case "63nPlI7KHi1":
         Script2();
         break;
-      case "6azIv5qe5UH":
+      case "5bioEcXZDP7":
         Script3();
         break;
-      case "5vMoRKlyol6":
+      case "6AnpeMPa4PV":
         Script4();
         break;
-      case "65xjQJwAs8h":
+      case "5kfMDpZJdHs":
         Script5();
         break;
-      case "5k3IX5y6hip":
+      case "6gF13bhgiQv":
         Script6();
         break;
-      case "6olInDjvBbZ":
+      case "6iTLiOTxKne":
         Script7();
+        break;
+      case "6lC0MSzUxXO":
+        Script8();
+        break;
+      case "62v1BoCdDfF":
+        Script9();
+        break;
+      case "5hqmatJFLOK":
+        Script10();
+        break;
+      case "6PVdKajmTDi":
+        Script11();
+        break;
+      case "5iSIteXX4ul":
+        Script12();
+        break;
+      case "6aiZINarjiY":
+        Script13();
+        break;
+      case "6k3UdZYikQp":
+        Script14();
+        break;
+      case "605npl7HZI4":
+        Script15();
+        break;
+      case "5g8DbJB0TGq":
+        Script16();
         break;
   }
 }
@@ -225,6 +252,303 @@ closeFullscreen();
 }
 
 function Script7()
+{
+  var elem = document.documentElement;
+
+function openFullscreen() {
+  if (elem.requestFullscreen) {
+    elem.requestFullscreen();
+  } else if (elem.webkitRequestFullscreen) { /* Safari */
+    elem.webkitRequestFullscreen();
+  } else if (elem.msRequestFullscreen) { /* IE11 */
+    elem.msRequestFullscreen();
+  }
+}
+
+function closeFullscreen() {
+  if (document.exitFullscreen) {
+    document.exitFullscreen();
+  } else if (document.webkitExitFullscreen) { /* Safari */
+    document.webkitExitFullscreen();
+  } else if (document.msExitFullscreen) { /* IE11 */
+    document.msExitFullscreen();
+  }
+}
+
+
+
+if(document.fullscreenElement == null){
+openFullscreen();
+}else{
+closeFullscreen();
+};
+}
+
+function Script8()
+{
+  var elem = document.documentElement;
+
+function openFullscreen() {
+  if (elem.requestFullscreen) {
+    elem.requestFullscreen();
+  } else if (elem.webkitRequestFullscreen) { /* Safari */
+    elem.webkitRequestFullscreen();
+  } else if (elem.msRequestFullscreen) { /* IE11 */
+    elem.msRequestFullscreen();
+  }
+}
+
+function closeFullscreen() {
+  if (document.exitFullscreen) {
+    document.exitFullscreen();
+  } else if (document.webkitExitFullscreen) { /* Safari */
+    document.webkitExitFullscreen();
+  } else if (document.msExitFullscreen) { /* IE11 */
+    document.msExitFullscreen();
+  }
+}
+
+
+
+if(document.fullscreenElement == null){
+openFullscreen();
+}else{
+closeFullscreen();
+};
+}
+
+function Script9()
+{
+  var elem = document.documentElement;
+
+function openFullscreen() {
+  if (elem.requestFullscreen) {
+    elem.requestFullscreen();
+  } else if (elem.webkitRequestFullscreen) { /* Safari */
+    elem.webkitRequestFullscreen();
+  } else if (elem.msRequestFullscreen) { /* IE11 */
+    elem.msRequestFullscreen();
+  }
+}
+
+function closeFullscreen() {
+  if (document.exitFullscreen) {
+    document.exitFullscreen();
+  } else if (document.webkitExitFullscreen) { /* Safari */
+    document.webkitExitFullscreen();
+  } else if (document.msExitFullscreen) { /* IE11 */
+    document.msExitFullscreen();
+  }
+}
+
+
+
+if(document.fullscreenElement == null){
+openFullscreen();
+}else{
+closeFullscreen();
+};
+}
+
+function Script10()
+{
+  var elem = document.documentElement;
+
+function openFullscreen() {
+  if (elem.requestFullscreen) {
+    elem.requestFullscreen();
+  } else if (elem.webkitRequestFullscreen) { /* Safari */
+    elem.webkitRequestFullscreen();
+  } else if (elem.msRequestFullscreen) { /* IE11 */
+    elem.msRequestFullscreen();
+  }
+}
+
+function closeFullscreen() {
+  if (document.exitFullscreen) {
+    document.exitFullscreen();
+  } else if (document.webkitExitFullscreen) { /* Safari */
+    document.webkitExitFullscreen();
+  } else if (document.msExitFullscreen) { /* IE11 */
+    document.msExitFullscreen();
+  }
+}
+
+
+
+if(document.fullscreenElement == null){
+openFullscreen();
+}else{
+closeFullscreen();
+};
+}
+
+function Script11()
+{
+  var elem = document.documentElement;
+
+function openFullscreen() {
+  if (elem.requestFullscreen) {
+    elem.requestFullscreen();
+  } else if (elem.webkitRequestFullscreen) { /* Safari */
+    elem.webkitRequestFullscreen();
+  } else if (elem.msRequestFullscreen) { /* IE11 */
+    elem.msRequestFullscreen();
+  }
+}
+
+function closeFullscreen() {
+  if (document.exitFullscreen) {
+    document.exitFullscreen();
+  } else if (document.webkitExitFullscreen) { /* Safari */
+    document.webkitExitFullscreen();
+  } else if (document.msExitFullscreen) { /* IE11 */
+    document.msExitFullscreen();
+  }
+}
+
+
+
+if(document.fullscreenElement == null){
+openFullscreen();
+}else{
+closeFullscreen();
+};
+}
+
+function Script12()
+{
+  var elem = document.documentElement;
+
+function openFullscreen() {
+  if (elem.requestFullscreen) {
+    elem.requestFullscreen();
+  } else if (elem.webkitRequestFullscreen) { /* Safari */
+    elem.webkitRequestFullscreen();
+  } else if (elem.msRequestFullscreen) { /* IE11 */
+    elem.msRequestFullscreen();
+  }
+}
+
+function closeFullscreen() {
+  if (document.exitFullscreen) {
+    document.exitFullscreen();
+  } else if (document.webkitExitFullscreen) { /* Safari */
+    document.webkitExitFullscreen();
+  } else if (document.msExitFullscreen) { /* IE11 */
+    document.msExitFullscreen();
+  }
+}
+
+
+
+if(document.fullscreenElement == null){
+openFullscreen();
+}else{
+closeFullscreen();
+};
+}
+
+function Script13()
+{
+  var elem = document.documentElement;
+
+function openFullscreen() {
+  if (elem.requestFullscreen) {
+    elem.requestFullscreen();
+  } else if (elem.webkitRequestFullscreen) { /* Safari */
+    elem.webkitRequestFullscreen();
+  } else if (elem.msRequestFullscreen) { /* IE11 */
+    elem.msRequestFullscreen();
+  }
+}
+
+function closeFullscreen() {
+  if (document.exitFullscreen) {
+    document.exitFullscreen();
+  } else if (document.webkitExitFullscreen) { /* Safari */
+    document.webkitExitFullscreen();
+  } else if (document.msExitFullscreen) { /* IE11 */
+    document.msExitFullscreen();
+  }
+}
+
+
+
+if(document.fullscreenElement == null){
+openFullscreen();
+}else{
+closeFullscreen();
+};
+}
+
+function Script14()
+{
+  var elem = document.documentElement;
+
+function openFullscreen() {
+  if (elem.requestFullscreen) {
+    elem.requestFullscreen();
+  } else if (elem.webkitRequestFullscreen) { /* Safari */
+    elem.webkitRequestFullscreen();
+  } else if (elem.msRequestFullscreen) { /* IE11 */
+    elem.msRequestFullscreen();
+  }
+}
+
+function closeFullscreen() {
+  if (document.exitFullscreen) {
+    document.exitFullscreen();
+  } else if (document.webkitExitFullscreen) { /* Safari */
+    document.webkitExitFullscreen();
+  } else if (document.msExitFullscreen) { /* IE11 */
+    document.msExitFullscreen();
+  }
+}
+
+
+
+if(document.fullscreenElement == null){
+openFullscreen();
+}else{
+closeFullscreen();
+};
+}
+
+function Script15()
+{
+  var elem = document.documentElement;
+
+function openFullscreen() {
+  if (elem.requestFullscreen) {
+    elem.requestFullscreen();
+  } else if (elem.webkitRequestFullscreen) { /* Safari */
+    elem.webkitRequestFullscreen();
+  } else if (elem.msRequestFullscreen) { /* IE11 */
+    elem.msRequestFullscreen();
+  }
+}
+
+function closeFullscreen() {
+  if (document.exitFullscreen) {
+    document.exitFullscreen();
+  } else if (document.webkitExitFullscreen) { /* Safari */
+    document.webkitExitFullscreen();
+  } else if (document.msExitFullscreen) { /* IE11 */
+    document.msExitFullscreen();
+  }
+}
+
+
+
+if(document.fullscreenElement == null){
+openFullscreen();
+}else{
+closeFullscreen();
+};
+}
+
+function Script16()
 {
   var elem = document.documentElement;
 

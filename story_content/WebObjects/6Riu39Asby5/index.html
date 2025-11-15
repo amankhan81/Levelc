@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sadlier Vocabulary Level C Unit 12</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Loading Inter and defining a custom handwriting font for examples */
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Kalam:wght@400;700&display=swap'); /* Adding Kalam as a potential fallback script font */
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f4f7f9;
+        }
+
+        /* Custom style for the example sentence */
+        .handwriting-font {
+            /* Using Kalam as a robust handwriting/script font */
+            font-family: 'Kalam', cursive;
+            font-size: 1.15rem; /* Slightly larger for readability */
+        }
+        
+        /* Color definitions */
+        .text-primary-blue { color: #2563EB; } /* blue-600 */
+        .border-primary-blue { border-color: #2563EB; }
+        .text-accent-green { color: #10B981; } /* green-500 */
+        .border-accent-green { border-color: #10B981; }
+        .text-accent-red { color: #EF4444; } /* red-500 */
+        .border-accent-red { border-color: #EF4444; }
+        
+        /* Background cycles for better visual separation */
+        .bg-blue-600\/10 { background-color: rgba(37, 99, 235, 0.05); }
+        .bg-green-500\/10 { background-color: rgba(16, 185, 129, 0.05); }
+        .bg-red-500\/10 { background-color: rgba(239, 68, 68, 0.05); }
+    </style>
+</head>
+<body>
+    <div class="container mx-auto p-4 sm:p-8 max-w-4xl"> <!-- Layout designed to fit the window well -->
+        <!-- Header -->
+        <header class="text-center mb-10">
+            <h1 class="text-5xl font-black text-gray-800 tracking-tight">Sadlier Vocabulary Level C Unit 12</h1>
+            <p class="text-xl text-gray-500 mt-2">Expand your lexicon with these essential terms.</p>
+        </header>
+
+        <!-- Vocabulary Cards Container -->
+        <div id="vocab-container" class="space-y-8">
+            <!-- Cards will be rendered here by JavaScript -->
+        </div>
+
+        <!-- Status/Error Message Box -->
+        <div id="messageBox" class="fixed bottom-4 right-4 p-4 text-sm font-medium rounded-lg shadow-lg hidden transition-opacity duration-300 z-50">
+            <!-- Messages appear here -->
+        </div>
+    </div>
+
+    <script>
+        // Vocabulary data for Sadlier Vocabulary Level C Unit 12 (all words in lowercase)
+        const vocabularyData = [
+            {
+                word: "abdicate",
+                emoji: "👑",
+                meaning: "To resign, formally give up an office or a duty; to disown, discard.",
+                example: "The tired monarch chose to **abdicate** the throne in favor of his son.",
+                synonyms: "Step down, relinquish, renounce, resign",
+                antonyms: "Retain, hold on to, assume, claim"
+            },
+            {
+                word: "bestow",
+                emoji: "🎁",
+                meaning: "To give as a gift; to provide with lodgings.",
+                example: "The organization plans to **bestow** a scholarship upon the most deserving student.",
+                synonyms: "Grant, confer, present, give, yield",
+                antonyms: "Retain, seize, withdraw, take back"
+            },
+            {
+                word: "capacious",
+                emoji: "🏠",
+                meaning: "Able to hold an amount; roomy, spacious.",
+                example: "The library had a **capacious** reading room filled with hundreds of chairs.",
+                synonyms: "Spacious, ample, roomy, vast",
+                antonyms: "Cramped, confined, small, restricted"
+            },
+            {
+                word: "caustic",
+                emoji: "🧪",
+                meaning: "Able to burn or eat away by chemical action; biting, sarcastic, severe.",
+                example: "His **caustic** remarks about the proposal offended everyone in the room.",
+                synonyms: "Burning, corrosive, acrid, sharp, biting",
+                antonyms: "Gentle, mild, bland, sugary, sweet"
+            },
+            {
+                word: "crusade",
+                emoji: "⚔️",
+                meaning: "A strong movement to advance a cause or idea; to campaign, work hard, or strive.",
+                example: "She launched a **crusade** to ban single-use plastics from the entire city.",
+                synonyms: "Campaign, drive, effort, movement, pitch",
+                antonyms: "Retreat, give up, surrender"
+            },
+            {
+                word: "deface",
+                emoji: "🗑️",
+                meaning: "To injure or destroy the surface or appearance of; to damage the value, influence, or effect of.",
+                example: "It is illegal to **deface** public property with graffiti or posters.",
+                synonyms: "Mar, spoil, vandalize, impair, injure",
+                antonyms: "Repair, restore, renovate, enhance"
+            },
+            {
+                word: "embargo",
+                emoji: "🛑",
+                meaning: "An order forbidding the trade in or movement of commercial goods; any restriction on commerce.",
+                example: "The nation imposed an **embargo** on certain luxury goods from its rival country.",
+                synonyms: "Prohibition, ban, restriction, sanction",
+                antonyms: "Trade, allowance, commerce, lifting of restrictions"
+            },
+            {
+                word: "fallacy",
+                emoji: "❌",
+                meaning: "A false notion or belief; an error in thinking.",
+                example: "The belief that money solves all problems is a common **fallacy**.",
+                synonyms: "Misconception, delusion, mistake, error, sophistry",
+                antonyms: "Truth, fact, reality, sound reasoning"
+            },
+            {
+                word: "levity",
+                emoji: "🎈",
+                meaning: "A lack of seriousness or earnestness, especially about things that should be serious; lightness in weight.",
+                example: "The general's attempt at **levity** during the serious meeting was poorly received.",
+                synonyms: "Frivolity, lightheartedness, flippancy, silliness",
+                antonyms: "Seriousness, gravity, solemnity, earnestness"
+            },
+            {
+                word: "mendicant",
+                emoji: "🙏",
+                meaning: "Begging; a beggar.",
+                example: "The old **mendicant** stood outside the market asking for loose change.",
+                synonyms: "Beggar, panhandler, supplicant, pauper",
+                antonyms: "Tycoon, benefactor, rich person, donor"
+            },
+            {
+                word: "nauseate",
+                emoji: "🤢",
+                meaning: "To make sick to the stomach; to fill with disgust.",
+                example: "The smell of stale fish began to **nauseate** the dinner guests.",
+                synonyms: "Sickened, disquiet, upset, disgust, repel",
+                antonyms: "Delight, cheer, gladden, thrill, attract"
+            },
+            {
+                word: "negate",
+                emoji: "🚫",
+                meaning: "To nullify, deny, bring to nothing; to make ineffective.",
+                example: "One single mistake could **negate** all the hard work they put into the presentation.",
+                synonyms: "Cancel, nullify, invalidate, veto, annul",
+                antonyms: "Confirm, approve, corroborate, validate, support"
+            },
+            {
+                word: "pivotal",
+                emoji: "⚙️",
+                meaning: "Vitally important, essential.",
+                example: "The invention of the printing press was a **pivotal** moment in human history.",
+                synonyms: "Crucial, critical, central, decisive, key",
+                antonyms: "Unimportant, trivial, minor, insignificant"
+            },
+            {
+                word: "recipient",
+                emoji: "👤",
+                meaning: "One who receives; receiving, able or willing to receive.",
+                example: "She was the lucky **recipient** of the 'Employee of the Month' award.",
+                synonyms: "Receiver, beneficiary, donee, inheritor",
+                antonyms: "Giver, donor, sender, benefactor"
+            },
+            {
+                word: "ruse",
+                emoji: "🤫",
+                meaning: "An action or device designed to confuse or mislead; a trick.",
+                example: "The general used a clever **ruse** to convince the enemy that his army was larger than it was.",
+                synonyms: "Trick, stratagem, bluff, subterfuge, deception",
+                antonyms: "Candor, honesty, transparency"
+            },
+            {
+                word: "teem",
+                emoji: "🐝",
+                meaning: "To become filled to overflowing; to be present in large quantities.",
+                example: "After the rain, the lake began to **teem** with fish.",
+                synonyms: "Swarm, abound, overflow, be prolific",
+                antonyms: "Lack, be wanting, be scarce, drain"
+            },
+            {
+                word: "tenet",
+                emoji: "📜",
+                meaning: "An opinion, belief, or principle held to be true.",
+                example: "A fundamental **tenet** of democracy is the right to free speech.",
+                synonyms: "Doctrine, belief, principle, dogma, creed",
+                antonyms: "Doubt, disbelief, heresy"
+            },
+            {
+                word: "tractable",
+                emoji: "🐑",
+                meaning: "Easily managed or controlled; docile.",
+                example: "The new puppy was highly **tractable**, quickly learning commands and house rules.",
+                synonyms: "Submissive, obedient, yielding, compliant",
+                antonyms: "Unruly, obstinate, stubborn, disobedient"
+            },
+            {
+                word: "ungainly",
+                emoji: "🚶",
+                meaning: "Clumsy, awkward; unwieldy.",
+                example: "The young fawn was **ungainly** on its long, skinny legs.",
+                synonyms: "Awkward, clumsy, unwieldy, graceless",
+                antonyms: "Graceful, skillful, nimble, well-coordinated"
+            },
+            {
+                word: "voracious",
+                emoji: "🍕",
+                meaning: "Having a huge appetite, greedy, ravenous; excessively eager.",
+                example: "He is a **voracious** reader, finishing several books every week.",
+                synonyms: "Gluttonous, avid, insatiable, eager, greedy",
+                antonyms: "Indifferent, apathetic, satisfied, moderate"
+            }
+        ];
+
+        // Color Cycle Configuration
+        const colors = [
+            { border: 'border-primary-blue', title: 'text-primary-blue', highlight: 'text-primary-blue', bg: 'bg-blue-600/10' }, // Primary Blue
+            { border: 'border-accent-green', title: 'text-accent-green', highlight: 'text-accent-green', bg: 'bg-green-500/10' }, // Accent Green
+            { border: 'border-accent-red', title: 'text-accent-red', highlight: 'text-accent-red', bg: 'bg-red-500/10' }, // Accent Red
+        ];
+        
+        const messageBox = document.getElementById('messageBox');
+        let messageTimeout;
+        
+        /**
+         * Displays a temporary status or error message.
+         */
+        function showMessage(message, isError = false) {
+            clearTimeout(messageTimeout);
+            messageBox.textContent = message;
+            messageBox.classList.remove('hidden', 'opacity-0');
+            messageBox.classList.add('opacity-100');
+
+            if (isError) {
+                messageBox.className = 'fixed bottom-4 right-4 p-4 text-sm font-medium rounded-lg shadow-lg transition-opacity duration-300 z-50 bg-red-100 text-red-700';
+            } else {
+                messageBox.className = 'fixed bottom-4 right-4 p-4 text-sm font-medium rounded-lg shadow-lg transition-opacity duration-300 z-50 bg-green-100 text-green-700';
+            }
+
+            messageTimeout = setTimeout(() => {
+                messageBox.classList.remove('opacity-100');
+                messageBox.classList.add('opacity-0');
+                setTimeout(() => messageBox.classList.add('hidden'), 300);
+            }, 5000);
+        }
+
+        // Global variable to track the currently playing audio
+        let activeAudio = null; 
+
+        /**
+         * Stops any active audio and plays the new file based on the word.
+         * @param {string} word The vocabulary word (used as the base filename).
+         */
+        function playAudio(word) {
+            // Generates the filename like 'accord.mp3'
+            const filename = `${word}.mp3`;
+
+            // 1. Stop any currently playing audio
+            if (activeAudio) {
+                activeAudio.pause();
+                activeAudio.currentTime = 0; // Rewind for next time
+                activeAudio = null;
+            }
+
+            // 2. Create the new audio object and set it as active
+            const audio = new Audio(filename);
+            activeAudio = audio;
+
+            // 3. Play the audio
+            audio.play()
+                .then(() => {
+                    showMessage(`Attempting to play audio: ${filename}. (File must be available in the same folder)`);
+                })
+                .catch(error => {
+                    console.error("Audio playback failed:", error);
+                    activeAudio = null;
+                    let errorMessage = `Failed to play ${filename}. Ensure the audio file is available in the same directory.`;
+                    
+                    if (error.name === 'NotAllowedError') {
+                        errorMessage = "Playback blocked by browser. Try interacting with the page first.";
+                    }
+                    
+                    showMessage(errorMessage, true);
+                });
+
+            // 4. Clear activeAudio when the current one finishes
+            audio.onended = () => {
+                if (activeAudio === audio) {
+                    activeAudio = null;
+                }
+            };
+        }
+
+        function renderVocabCards() {
+            const container = document.getElementById('vocab-container');
+            if (!container) return;
+            
+            let cardHtml = '';
+
+            vocabularyData.forEach((item, index) => {
+                const color = colors[index % colors.length];
+
+                // Highlight Logic: Replace **word** with a styled span using the cycle color.
+                const highlightedExample = item.example.replace(
+                    /\*\*(.*?)\*\*/g, 
+                    (match, p1) => `<span class="font-bold ${color.highlight} bg-yellow-200/50 p-0.5 rounded-md">${p1}</span>`
+                );
+
+                cardHtml += `
+                    <div class="border-l-8 ${color.border} rounded-xl shadow-xl p-6 sm:p-8 space-y-4 ${color.bg} transition-all duration-300 hover:shadow-2xl">
+                        <!-- Word, Number, Illustration, and Audio Button -->
+                        <div class="flex justify-between items-start">
+                            <h2 class="text-3xl sm:text-4xl font-extrabold ${color.title} flex items-center leading-tight">
+                                <span class="mr-2 text-gray-400 font-bold">${index + 1}.</span> 
+                                ${item.word}
+                                <span class="ml-3 text-4xl sm:text-5xl">${item.emoji}</span>
+                            </h2>
+                            <!-- Simplified Audio Button -->
+                            <button onclick="playAudio('${item.word}')" class="flex-shrink-0 p-3 rounded-full focus:outline-none bg-blue-600 text-white shadow-md hover:bg-blue-700 transition-colors" aria-label="Listen to word">
+                                <!-- Simple Speaker Icon SVG -->
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-7 h-7">
+                                    <path d="M11 5L6 9H2V15H6L11 19V5Z"/>
+                                    <path d="M15.54 8.46a4.99 4.99 0 0 1 0 7.07"/>
+                                </svg>
+                            </button>
+                        </div>
+
+                        <!-- Meaning -->
+                        <div>
+                            <span class="block text-xl font-semibold text-gray-700">Meaning:</span>
+                            <p class="text-gray-600 italic mt-1">${item.meaning}</p>
+                        </div>
+
+                        <!-- Example (With Handwriting Font) -->
+                        <div>
+                            <span class="block text-xl font-semibold text-gray-700">Example:</span>
+                            <p class="mt-2 leading-relaxed handwriting-font text-gray-800">${highlightedExample}</p>
+                        </div>
+
+                        <!-- Synonyms (One Line) -->
+                        <div class="flex flex-col sm:flex-row sm:items-baseline">
+                            <span class="text-xl font-semibold text-gray-700 flex-shrink-0 mr-2">Synonyms:</span>
+                            <p class="mt-1 sm:mt-0 text-accent-green font-medium">${item.synonyms}</p>
+                        </div>
+
+                        <!-- Antonyms (One Line) -->
+                        <div class="flex flex-col sm:flex-row sm:items-baseline">
+                            <span class="text-xl font-semibold text-gray-700 flex-shrink-0 mr-2">Antonyms:</span>
+                            <p class="mt-1 sm:mt-0 text-accent-red font-medium">${item.antonyms}</p>
+                        </div>
+                    </div>
+                `;
+            });
+            container.innerHTML = cardHtml;
+        }
+
+        // Initialize the cards when the script loads
+        document.addEventListener('DOMContentLoaded', renderVocabCards);
+    </script>
+</body>
+</html>

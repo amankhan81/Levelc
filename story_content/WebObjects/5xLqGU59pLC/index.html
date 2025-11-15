@@ -3,209 +3,367 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Unit 9 Vocabulary</title>
-    
+    <title>Sadlier Vocabulary Level C Unit 9</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        // Defined colors for the cycle
-                        'primary-indigo': '#4f46e5', // Indigo
-                        'accent-green': '#10b981', // Green (Used for Synonyms and Cycle)
-                        'accent-red': '#ef4444',   // Red (Used for Antonyms and Cycle)
-                        'secondary-gray': '#f3f4f6',
-                    },
-                    fontFamily: {
-                        sans: ['Inter', 'sans-serif'],
-                    }
-                }
-            }
-        }
-    </script>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+        /* Loading Inter and defining a custom handwriting font for examples */
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Kalam:wght@400;700&display=swap'); /* Adding Kalam as a potential fallback script font */
         
-        .vocab-card {
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.06);
-            transition: transform 0.2s, box-shadow 0.2s;
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f4f7f9;
         }
-        .vocab-card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+
+        /* Custom style for the example sentence */
+        .handwriting-font {
+            /* Using Kalam as a robust handwriting/script font */
+            font-family: 'Kalam', cursive;
+            font-size: 1.15rem; /* Slightly larger for readability */
         }
-        .play-button {
-            background-color: #6366f1; /* Indigo */
-            color: white;
-            transition: background-color 0.15s, transform 0.1s;
-        }
-        .play-button:hover:not(:disabled) {
-            background-color: #4f46e5;
-        }
-        .vocab-icon {
-            font-size: 1.75rem; /* 28px */
-            line-height: 1;
-        }
+        
+        /* Color definitions */
+        .text-primary-blue { color: #2563EB; } /* blue-600 */
+        .border-primary-blue { border-color: #2563EB; }
+        .text-accent-green { color: #10B981; } /* green-500 */
+        .border-accent-green { border-color: #10B981; }
+        .text-accent-red { color: #EF4444; } /* red-500 */
+        .border-accent-red { border-color: #EF4444; }
+        
+        /* Background cycles for better visual separation */
+        .bg-blue-600\/10 { background-color: rgba(37, 99, 235, 0.05); }
+        .bg-green-500\/10 { background-color: rgba(16, 185, 129, 0.05); }
+        .bg-red-500\/10 { background-color: rgba(239, 68, 68, 0.05); }
     </style>
 </head>
-<body class="bg-secondary-gray min-h-screen font-sans p-4 md:p-8">
+<body>
+    <div class="container mx-auto p-4 sm:p-8 max-w-4xl"> <!-- Layout designed to fit the window well -->
+        <!-- Header -->
+        <header class="text-center mb-10">
+            <h1 class="text-5xl font-black text-gray-800 tracking-tight">Sadlier Vocabulary Level C Unit 9</h1>
+            <p class="text-xl text-gray-500 mt-2">Expand your lexicon with these essential terms.</p>
+        </header>
 
-    <div id="message-box" class="fixed top-4 right-4 z-50 transition-opacity duration-300 opacity-0 hidden">
-        <div class="bg-red-500 text-white px-4 py-2 rounded-lg shadow-xl font-semibold"></div>
+        <!-- Vocabulary Cards Container -->
+        <div id="vocab-container" class="space-y-8">
+            <!-- Cards will be rendered here by JavaScript -->
+        </div>
+
+        <!-- Status/Error Message Box -->
+        <div id="messageBox" class="fixed bottom-4 right-4 p-4 text-sm font-medium rounded-lg shadow-lg hidden transition-opacity duration-300 z-50">
+            <!-- Messages appear here -->
+        </div>
     </div>
 
-    <header class="text-center mb-10">
-        <h1 class="text-4xl font-extrabold text-gray-800 mb-2">Unit 9 Vocabulary</h1>
-        <p class="text-xl text-gray-600">Sight, Sound, and Mastery</p>
-    </header>
-
-    <main class="max-w-4xl mx-auto">
-        
-        <div id="vocabulary-list" class="grid grid-cols-1 gap-6 mb-16">
-            <!-- Vocabulary cards will be rendered here by JavaScript -->
-        </div>
-    </main>
-
     <script>
-        // Data for Unit 9
-        const UNIT_9_WORDS = [
-            { word: "apt", emoji: "💡", meaning: "Suitable, fitting, likely; quick to learn.", example: "The apt student quickly grasped the complex math concept.", synonyms: "appropriate, fit, liable, inclined", antonyms: "inappropriate, slow, unlikely" },
-            { word: "awry", emoji: "😵", meaning: "Away from the appropriate course; turned or twisted to one side.", example: "After the earthquake, the pictures on the wall were all awry.", synonyms: "crooked, askew, amiss, wrong", antonyms: "straight, proper, orderly, right" },
-            { word: "bludgeon", emoji: "🔨", meaning: "A short club used as a weapon; to strike with a heavy club.", example: "The suspect used a heavy bludgeon to break the window.", synonyms: "club, cudgel, clout, hit, beat", antonyms: "tap, nudge, pat, stroke" },
-            { word: "capitulate", emoji: "🏳️", meaning: "To end resistance, surrender, give up.", example: "Faced with overwhelming force, the army had no choice but to capitulate.", synonyms: "submit, yield, cave in, give up", antonyms: "resist, defend, hold out, fight on" },
-            { word: "chafe", emoji: "👚", meaning: "To warm by rubbing; to feel annoyance or impatience at what is restrictive.", example: "The rough collar began to chafe his neck.", synonyms: "irritate, rub, sore, annoy, abrade", antonyms: "soothe, comfort, delight, please" },
-            { word: "defile", emoji: "🗑️", meaning: "To make unclean or dirty, destroy the purity of.", example: "Vandalism can defile a beautiful piece of public art.", synonyms: "pollute, contaminate, desecrate, taint", antonyms: "purify, cleanse, honor, sanctify" },
-            { word: "dire", emoji: "⚠️", meaning: "Dreadful, disastrous; extremely urgent.", example: "The refugees were in dire need of food and medical supplies.", synonyms: "disastrous, ominous, urgent, desperate", antonyms: "favorable, helpful, hopeful, mild" },
-            { word: "disarming", emoji: "😊", meaning: "Tending to remove suspicion or hostility; charming.", example: "His shy smile and honest gaze had a disarming effect on the interviewers.", synonyms: "charming, endearing, winning, irresistible", antonyms: "irritating, alarming, hostile, threatening" },
-            { word: "disgruntled", emoji: "😠", meaning: "In bad humor, discontented, annoyed.", example: "The disgruntled employees staged a walkout to protest the poor working conditions.", synonyms: "annoyed, upset, dissatisfied, grumpy", antonyms: "pleased, content, satisfied, happy" },
-            { word: "encroach", emoji: "🚧", meaning: "To advance beyond the usual or proper limits, trespass.", example: "We must make sure the city doesn't encroach on the protected wetlands.", synonyms: "trespass, intrude, infringe, impinge", antonyms: "respect, avoid, retreat, keep off" },
-            { word: "endow", emoji: "🎁", meaning: "To furnish, equip, provide with a talent or quality.", example: "The wealthy donor decided to endow the university with a new research center.", synonyms: "grant, bestow, present, vest", antonyms: "take away, dispossess, strip, divest" },
-            { word: "fend", emoji: "🛡️", meaning: "To ward off, resist; to get along, manage.", example: "She had to fend for herself after moving out of her parents' house.", synonyms: "ward off, resist, cope, manage", antonyms: "welcome, invite, accept, surrender" },
-            { word: "impunity", emoji: "⛓️", meaning: "Freedom from punishment.", example: "The wealthy criminal seemed to act with complete impunity, never facing consequences.", synonyms: "exemption, immunity, privilege, license", antonyms: "penalty, punishment, liability, justice" },
-            { word: "mien", emoji: "🧍", meaning: "Air, manner, appearance, expression.", example: "The king entered the throne room with a regal and majestic mien.", synonyms: "look, bearing, demeanor, appearance", antonyms: "(N/A)" },
-            { word: "pertinent", emoji: "✅", meaning: "Related to the matter at hand, to the point.", example: "Please stick to the pertinent facts during your presentation.", synonyms: "relevant, germane, appropriate, related", antonyms: "irrelevant, unconnected, immaterial" },
-            { word: "predominant", emoji: "👑", meaning: "The greatest in strength or power; most common.", example: "In this desert region, heat is the predominant factor affecting agriculture.", synonyms: "chief, major, principal, main, paramount", antonyms: "secondary, minor, subordinate, least" },
-            { word: "prodigy", emoji: "⭐", meaning: "Something wonderful or marvelous; a child with exceptional talent.", example: "The young musical prodigy began playing the piano before he could read.", synonyms: "genius, marvel, wonder, phenomenon", antonyms: "failure, dullard, novice, amateur" },
-            { word: "recluse", emoji: "🤫", meaning: "A person who leads a life shut up or withdrawn from the world.", example: "The famous author became a recluse after his first book was published, avoiding the public eye.", synonyms: "hermit, loner, anchorite, solitary", antonyms: "socialite, extrovert, party-goer" },
-            { word: "renown", emoji: "🏆", meaning: "Fame, glory.", example: "The company achieved international renown for its innovative technology.", synonyms: "fame, celebrity, reputation, prestige", antonyms: "obscurity, anonymity, dishonor, shame" },
-            { word: "specific", emoji: "🔍", meaning: "Definite, particular, or precise.", example: "The instructions were specific about the order in which the parts should be assembled.", synonyms: "definite, precise, explicit, particular", antonyms: "vague, general, ambiguous, unclear" }
+        // Vocabulary data for Sadlier Vocabulary Level C Unit 9 (all words in lowercase)
+        const vocabularyData = [
+            {
+                word: "apt",
+                emoji: "💡",
+                meaning: "Suited for a purpose or occasion; likely; quick to learn.",
+                example: "She has an **apt** mind for mathematics and picks up new concepts quickly.",
+                synonyms: "Appropriate, fit, liable, clever, prone",
+                antonyms: "Inappropriate, slow, unlikely, unskilled"
+            },
+            {
+                word: "awry",
+                emoji: "🚧",
+                meaning: "In a turned or twisted position or direction; wrong, out of the planned or expected course.",
+                example: "The best-laid plans went **awry** when the main speaker suddenly got sick.",
+                synonyms: "Crooked, askew, amiss, wrong, distorted",
+                antonyms: "Straight, symmetrical, right, orderly"
+            },
+            {
+                word: "bludgeon",
+                emoji: "🔨",
+                meaning: "A short club used as a weapon; to strike with a heavy club; to use heavy-handed threats to coerce.",
+                example: "The police found the heavy wooden **bludgeon** discarded near the scene of the crime.",
+                synonyms: "Club, cudgel, bat, beat, coerce, bully",
+                antonyms: "Shield, protect, persuade, negotiate"
+            },
+            {
+                word: "capitulate",
+                emoji: "🏳️",
+                meaning: "To end resistance, surrender, give up, throw in the towel.",
+                example: "Faced with overwhelming evidence, the suspect had no choice but to **capitulate** to the interrogators.",
+                synonyms: "Surrender, yield, submit, give in",
+                antonyms: "Resist, stand firm, hold out, defy"
+            },
+            {
+                word: "chafe",
+                emoji: "😡",
+                meaning: "To warm by rubbing; to make sore by rubbing; to be annoyed or impatient.",
+                example: "The rough collar began to **chafe** his neck after wearing the uniform for several hours.",
+                synonyms: "Irritate, annoy, abrade, rub, fret",
+                antonyms: "Soothe, mollify, placate, smooth"
+            },
+            {
+                word: "defile",
+                emoji: "🚽",
+                meaning: "To make unclean or dirty, destroy the purity of; to violate the sanctity of.",
+                example: "The vandals sought to **defile** the ancient monument with graffiti and trash.",
+                synonyms: "Pollute, contaminate, violate, sully, taint",
+                antonyms: "Cleanse, purify, sanctify, hallow"
+            },
+            {
+                word: "dire",
+                emoji: "⚠️",
+                meaning: "Dreadful, causing fear or suffering; warning of trouble to come; urgent.",
+                example: "The people faced a **dire** shortage of food and water after the earthquake.",
+                synonyms: "Disastrous, ominous, dreadful, urgent, alarming",
+                antonyms: "Favorable, promising, encouraging, pleasant"
+            },
+            {
+                word: "disarming",
+                emoji: "😌",
+                meaning: "Charming, tending to get rid of unfriendliness or suspicion.",
+                example: "The baby's **disarming** smile immediately softened the stern visitor's expression.",
+                synonyms: "Winning, irresistible, engaging, captivating",
+                antonyms: "Alarming, hostile, threatening, offensive"
+            },
+            {
+                word: "disgruntled",
+                emoji: "😒",
+                meaning: "In bad humor, annoyed, discontented, sulky.",
+                example: "The **disgruntled** employees staged a walkout to protest the new wage policy.",
+                synonyms: "Discontented, peevish, resentful, annoyed",
+                antonyms: "Pleased, satisfied, content, happy"
+            },
+            {
+                word: "encroach",
+                emoji: "🛑",
+                meaning: "To advance beyond the usual or proper limits, trespass.",
+                example: "The weeds from the empty lot started to **encroach** upon the neighbor's well-kept lawn.",
+                synonyms: "Trespass, intrude, infringe, poach, overstep",
+                antonyms: "Respect, avoid, recede, keep off"
+            },
+            {
+                word: "endow",
+                emoji: "🎁",
+                meaning: "To furnish, equip, provide with funds or some other desirable thing or quality.",
+                example: "A generous donor agreed to **endow** the university with a large research grant.",
+                synonyms: "Grant, bestow, equip, present, furnish",
+                antonyms: "Take away, deprive, withhold, strip"
+            },
+            {
+                word: "fend",
+                emoji: "🛡️",
+                meaning: "To ward off, resist; to get along, manage.",
+                example: "The small shop owner had to **fend** off competition from the large chain stores.",
+                synonyms: "Ward off, resist, survive, manage, repel",
+                antonyms: "Accept, surrender, capitulate, yield"
+            },
+            {
+                word: "impunity",
+                emoji: "⚖️",
+                meaning: "Freedom from punishment.",
+                example: "The powerful crime boss believed he could act with complete **impunity**.",
+                synonyms: "Exemption, immunity, privilege, license",
+                antonyms: "Punishment, liability, accountability, responsibility"
+            },
+            {
+                word: "mien",
+                emoji: "👤",
+                meaning: "Air, manner; appearance, expression of attitude or personality.",
+                example: "His calm and composed **mien** suggested that he was entirely in control of the situation.",
+                synonyms: "Air, manner, look, demeanor, appearance",
+                antonyms: "Inward feeling, character"
+            },
+            {
+                word: "pertinent",
+                emoji: "📌",
+                meaning: "Relating to the matter at hand, to the point.",
+                example: "During the discussion, the lawyer ensured all his points were directly **pertinent** to the case.",
+                synonyms: "Relevant, germane, fitting, appropriate",
+                antonyms: "Irrelevant, unconnected, extraneous, immaterial"
+            },
+            {
+                word: "predominant",
+                emoji: "👑",
+                meaning: "The greatest in strength or power; most common or conspicuous.",
+                example: "The **predominant** color in the tapestry was a deep, earthy red.",
+                synonyms: "Chief, major, paramount, prevalent, primary",
+                antonyms: "Subordinate, minor, secondary, weakest"
+            },
+            {
+                word: "prodigy",
+                emoji: "🌟",
+                meaning: "Something wonderful or marvelous; an unusual feat; a young person with exceptional ability.",
+                example: "The five-year-old musical **prodigy** could play complex pieces by ear.",
+                synonyms: "Genius, marvel, wonder, phenomenon",
+                antonyms: "Dullard, mediocrity, average person"
+            },
+            {
+                word: "recluse",
+                emoji: " hermit ",
+                meaning: "A person who leads a life shut up or withdrawn from the world.",
+                example: "The elderly man lived as a **recluse** in a small cabin deep in the woods, avoiding all contact with the outside world.",
+                synonyms: "Hermit, loner, solitary, anchorite",
+                antonyms: "Socialite, extrovert, gregarious person"
+            },
+            {
+                word: "renown",
+                emoji: "🏆",
+                meaning: "Fame, glory.",
+                example: "The scientist achieved international **renown** for her groundbreaking work in physics.",
+                synonyms: "Fame, glory, prestige, distinction, celebrity",
+                antonyms: "Anonymity, obscurity, disgrace, infamy"
+            },
+            {
+                word: "specific",
+                emoji: "🔎",
+                meaning: "Clearly defined or identified; precise.",
+                example: "Please provide **specific** examples to support your argument, rather than vague generalizations.",
+                synonyms: "Precise, exact, definite, particular",
+                antonyms: "Vague, general, ambiguous, unclear"
+            }
         ];
 
-        // --- Static Audio Playback Logic ---
-
-        function playStaticAudio(word) {
-            const wordLower = word.toLowerCase();
-            const audioId = `audio-${wordLower}`;
-            const audio = document.getElementById(audioId);
-            
-            if (audio) {
-                audio.pause();
-                audio.currentTime = 0;
-                audio.play();
-            } else {
-                // Use the custom message box for feedback
-                alertUser(`Audio file for "${wordLower}.mp3" not found. Please ensure the file is in the same folder.`);
-            }
-        }
-
-        // Custom alert function
-        function alertUser(message) {
-            const box = document.getElementById('message-box');
-            const content = box.querySelector('div');
-            
-            content.textContent = message;
-            box.classList.remove('hidden', 'opacity-0');
-            box.classList.add('opacity-100', 'bg-red-500');
-
-            clearTimeout(box.timer);
-            box.timer = setTimeout(() => {
-                box.classList.remove('opacity-100');
-                box.classList.add('opacity-0');
-                setTimeout(() => box.classList.add('hidden'), 300);
-            }, 3000);
-        }
+        // Color Cycle Configuration
+        const colors = [
+            { border: 'border-primary-blue', title: 'text-primary-blue', highlight: 'text-primary-blue', bg: 'bg-blue-600/10' }, // Primary Blue
+            { border: 'border-accent-green', title: 'text-accent-green', highlight: 'text-accent-green', bg: 'bg-green-500/10' }, // Accent Green
+            { border: 'border-accent-red', title: 'text-accent-red', highlight: 'text-accent-red', bg: 'bg-red-500/10' }, // Accent Red
+        ];
         
-        // --- Rendering Logic ---
+        const messageBox = document.getElementById('messageBox');
+        let messageTimeout;
+        
+        /**
+         * Displays a temporary status or error message.
+         */
+        function showMessage(message, isError = false) {
+            clearTimeout(messageTimeout);
+            messageBox.textContent = message;
+            messageBox.classList.remove('hidden', 'opacity-0');
+            messageBox.classList.add('opacity-100');
 
-        function renderVocabularyList() {
-            const container = document.getElementById('vocabulary-list');
+            if (isError) {
+                messageBox.className = 'fixed bottom-4 right-4 p-4 text-sm font-medium rounded-lg shadow-lg transition-opacity duration-300 z-50 bg-red-100 text-red-700';
+            } else {
+                messageBox.className = 'fixed bottom-4 right-4 p-4 text-sm font-medium rounded-lg shadow-lg transition-opacity duration-300 z-50 bg-green-100 text-green-700';
+            }
+
+            messageTimeout = setTimeout(() => {
+                messageBox.classList.remove('opacity-100');
+                messageBox.classList.add('opacity-0');
+                setTimeout(() => messageBox.classList.add('hidden'), 300);
+            }, 5000);
+        }
+
+        // Global variable to track the currently playing audio
+        let activeAudio = null; 
+
+        /**
+         * Stops any active audio and plays the new file based on the word.
+         * @param {string} word The vocabulary word (used as the base filename).
+         */
+        function playAudio(word) {
+            // Generates the filename like 'apt.mp3'
+            const filename = `${word}.mp3`;
+
+            // 1. Stop any currently playing audio
+            if (activeAudio) {
+                activeAudio.pause();
+                activeAudio.currentTime = 0; // Rewind for next time
+                activeAudio = null;
+            }
+
+            // 2. Create the new audio object and set it as active
+            const audio = new Audio(filename);
+            activeAudio = audio;
+
+            // 3. Play the audio
+            audio.play()
+                .then(() => {
+                    showMessage(`Attempting to play audio: ${filename}. (File must be available in the same folder)`);
+                })
+                .catch(error => {
+                    console.error("Audio playback failed:", error);
+                    activeAudio = null;
+                    let errorMessage = `Failed to play ${filename}. Ensure the audio file is available in the same directory.`;
+                    
+                    if (error.name === 'NotAllowedError') {
+                        errorMessage = "Playback blocked by browser. Try interacting with the page first.";
+                    }
+                    
+                    showMessage(errorMessage, true);
+                });
+
+            // 4. Clear activeAudio when the current one finishes
+            audio.onended = () => {
+                if (activeAudio === audio) {
+                    activeAudio = null;
+                }
+            };
+        }
+
+        function renderVocabCards() {
+            const container = document.getElementById('vocab-container');
+            if (!container) return;
             
-            // Define the color cycle classes
-            const colorClasses = [
-                { text: 'text-primary-indigo', border: 'border-primary-indigo' }, // Indigo
-                { text: 'text-accent-green', border: 'border-accent-green' }, // Green
-                { text: 'text-accent-red', border: 'border-accent-red' }      // Red
-            ];
+            let cardHtml = '';
 
-            container.innerHTML = UNIT_9_WORDS.map((item, index) => {
-                
-                const cycleIndex = index % colorClasses.length;
-                const colorSet = colorClasses[cycleIndex];
-                
-                const colorClass = `border-l-4 ${colorSet.border}`;
-                const titleColorClass = colorSet.text;
-                const highlightColorClass = colorSet.text; // Use the same color for highlight
+            vocabularyData.forEach((item, index) => {
+                const color = colors[index % colors.length];
 
-                // The entry word is now explicitly lowercase
-                const wordLower = item.word.toLowerCase();
-                const audioPath = `${wordLower}.mp3`;
-                
-                // Robust Regex to highlight the root word and common inflections 
-                const exampleRegex = new RegExp(`\\b${item.word}\\w*\\b`, 'gi');
-                const highlightedExample = item.example.replace(exampleRegex, 
-                    `<span class="font-bold ${highlightColorClass}">$&</span>`
+                // Highlight Logic: Replace **word** with a styled span using the cycle color.
+                const highlightedExample = item.example.replace(
+                    /\*\*(.*?)\*\*/g, 
+                    (match, p1) => `<span class="font-bold ${color.highlight} bg-yellow-200/50 p-0.5 rounded-md">${p1}</span>`
                 );
-                
-                return `
-                    <div class="vocab-card bg-white p-6 rounded-xl ${colorClass}">
-                        <div class="flex justify-between items-start mb-3">
-                            <!-- Word & Emoji -->
-                            <div class="flex items-center space-x-3">
-                                <h2 class="text-2xl font-bold ${titleColorClass}">
-                                    ${index + 1}. ${wordLower}
-                                </h2>
-                                <span class="vocab-icon" title="Illustration for ${wordLower}">${item.emoji}</span>
-                            </div>
 
-                            <!-- Play Button -->
-                            <button 
-                                class="play-button p-3 rounded-full flex-shrink-0 flex items-center justify-center text-sm font-semibold shadow-md hover:shadow-lg"
-                                onclick="playStaticAudio('${wordLower}')"
-                                aria-label="Play pronunciation for ${wordLower}"
-                            >
-                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-volume-2">
-                                    <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/>
-                                    <path d="M15.54 8.46a5 5 0 0 1 0 7.07"/>
-                                    <path d="M19.07 4.93a10 10 0 0 1 0 14.14"/>
+                cardHtml += `
+                    <div class="border-l-8 ${color.border} rounded-xl shadow-xl p-6 sm:p-8 space-y-4 ${color.bg} transition-all duration-300 hover:shadow-2xl">
+                        <!-- Word, Number, Illustration, and Audio Button -->
+                        <div class="flex justify-between items-start">
+                            <h2 class="text-3xl sm:text-4xl font-extrabold ${color.title} flex items-center leading-tight">
+                                <span class="mr-2 text-gray-400 font-bold">${index + 1}.</span> 
+                                ${item.word}
+                                <span class="ml-3 text-4xl sm:text-5xl">${item.emoji}</span>
+                            </h2>
+                            <!-- Simplified Audio Button -->
+                            <button onclick="playAudio('${item.word}')" class="flex-shrink-0 p-3 rounded-full focus:outline-none bg-blue-600 text-white shadow-md hover:bg-blue-700 transition-colors" aria-label="Listen to word">
+                                <!-- Simple Speaker Icon SVG -->
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-7 h-7">
+                                    <path d="M11 5L6 9H2V15H6L11 19V5Z"/>
+                                    <path d="M15.54 8.46a4.99 4.99 0 0 1 0 7.07"/>
                                 </svg>
                             </button>
-                            <!-- Hidden Audio Tag (Source points to expected local file) -->
-                            <audio id="audio-${wordLower}" class="hidden">
-                                <source src="${audioPath}" type="audio/mpeg">
-                            </audio>
                         </div>
-                        
-                        <!-- Meaning -->
-                        <p class="mt-1 text-gray-800"><span class="font-semibold text-gray-900">Meaning:</span> ${item.meaning}</p>
-                        
-                        <!-- Example -->
-                        <p class="mt-3 text-base italic text-gray-700">
-                           <span class="font-semibold not-italic text-gray-900">Example:</span> ${highlightedExample}
-                        </p>
-                        
-                        <!-- Synonyms -->
-                        <p class="mt-3 text-sm text-accent-green"><span class="font-semibold text-gray-900">Synonyms:</span> ${item.synonyms}</p>
 
-                        <!-- Antonyms -->
-                        <p class="mt-1 text-sm text-accent-red"><span class="font-semibold text-gray-900">Antonyms:</span> ${item.antonyms}</p>
+                        <!-- Meaning -->
+                        <div>
+                            <span class="block text-xl font-semibold text-gray-700">Meaning:</span>
+                            <p class="text-gray-600 italic mt-1">${item.meaning}</p>
+                        </div>
+
+                        <!-- Example (With Handwriting Font) -->
+                        <div>
+                            <span class="block text-xl font-semibold text-gray-700">Example:</span>
+                            <p class="mt-2 leading-relaxed handwriting-font text-gray-800">${highlightedExample}</p>
+                        </div>
+
+                        <!-- Synonyms (One Line) -->
+                        <div class="flex flex-col sm:flex-row sm:items-baseline">
+                            <span class="text-xl font-semibold text-gray-700 flex-shrink-0 mr-2">Synonyms:</span>
+                            <p class="mt-1 sm:mt-0 text-accent-green font-medium">${item.synonyms}</p>
+                        </div>
+
+                        <!-- Antonyms (One Line) -->
+                        <div class="flex flex-col sm:flex-row sm:items-baseline">
+                            <span class="text-xl font-semibold text-gray-700 flex-shrink-0 mr-2">Antonyms:</span>
+                            <p class="mt-1 sm:mt-0 text-accent-red font-medium">${item.antonyms}</p>
+                        </div>
                     </div>
                 `;
-            }).join('');
+            });
+            container.innerHTML = cardHtml;
         }
 
-        // Initialize on load
-        window.onload = renderVocabularyList;
+        // Initialize the cards when the script loads
+        document.addEventListener('DOMContentLoaded', renderVocabCards);
     </script>
 </body>
 </html>
