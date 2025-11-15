@@ -242,6 +242,8 @@
             if (isError) {
                 messageBox.className = 'fixed bottom-4 right-4 p-4 text-sm font-medium rounded-lg shadow-lg transition-opacity duration-300 z-50 bg-red-100 text-red-700';
             } else {
+                // If it's a success message, we now hide it instantly, but keep the function signature
+                // For this specific fix, we rely on the caller (playAudio) not calling showMessage on success.
                 messageBox.className = 'fixed bottom-4 right-4 p-4 text-sm font-medium rounded-lg shadow-lg transition-opacity duration-300 z-50 bg-green-100 text-green-700';
             }
 
@@ -277,7 +279,8 @@
             // 3. Play the audio
             audio.play()
                 .then(() => {
-                    showMessage(`Attempting to play audio: ${filename}. (File must be available in the same folder)`);
+                    // Success: Removed showMessage here per user request.
+                    // showMessage(`Attempting to play audio: ${filename}. (File must be available in the same folder)`); 
                 })
                 .catch(error => {
                     console.error("Audio playback failed:", error);

@@ -57,167 +57,166 @@
 
     <script>
         // Vocabulary data for Sadlier Vocabulary Level C Unit 7 (all words in lowercase)
-        // This data set includes the words from the previous Unit 1, which are also the correct words for Unit 7.
         const vocabularyData = [
             {
-                word: "adage",
+                word: "acme",
+                emoji: "⛰️",
+                meaning: "The highest point or stage.",
+                example: "Reaching the summit of Mount Everest was the **acme** of his mountaineering career.",
+                synonyms: "Summit, top, peak, zenith",
+                antonyms: "Low point, bottom, nadir, depth"
+            },
+            {
+                word: "attribute",
+                emoji: "🏷️",
+                meaning: "A quality or characteristic belonging to or inherent in someone or something; to assign or credit to.",
+                example: "Patience is a necessary **attribute** for a teacher.",
+                synonyms: "Trait, characteristic; credit, ascribe",
+                antonyms: "Discount, deny, disclaim (for Verb)"
+            },
+            {
+                word: "belittle",
+                emoji: "👎",
+                meaning: "To make something appear less important than it is; to refer to in a disparaging or contemptuous way.",
+                example: "It is rude to constantly **belittle** someone's achievements.",
+                synonyms: "Minimize, underrate, disparage, scorn",
+                antonyms: "Magnify, praise, extol, laud"
+            },
+            {
+                word: "convey",
+                emoji: "🚚",
+                meaning: "To transport; to transmit; to communicate, make known.",
+                example: "The painting's dark colors **convey** a sense of sadness and mystery.",
+                synonyms: "Carry, send, transport, transmit, communicate",
+                antonyms: "Hold back, hide, keep secret, retain"
+            },
+            {
+                word: "doctrine",
                 emoji: "📜",
-                meaning: "A proverb, wise saying, or short statement expressing a general truth.",
-                example: "The old **adage**, 'Look before you leap,' is still relevant advice today.",
-                synonyms: "Maxim, aphorism, saw, proverb",
-                antonyms: "Novelty, nonsense, ambiguity"
+                meaning: "A belief, principle, or system of beliefs held by a group, church, or organization.",
+                example: "The new political party was founded on a strict economic **doctrine**.",
+                synonyms: "Belief, principle, tenet, dogma",
+                antonyms: "N/A"
             },
             {
-                word: "bonanza",
-                emoji: "💰",
-                meaning: "A rich mass of ore in a mine; something very valuable, profitable, or rewarding; a source of great wealth or prosperity.",
-                example: "The lottery winner felt like they had stumbled upon a financial **bonanza** overnight.",
-                synonyms: "Windfall, bounty, jackpot, sudden gain",
-                antonyms: "Loss, famine, disaster, scarcity"
+                word: "excise",
+                emoji: "✂️",
+                meaning: "To remove by cutting; an indirect tax on the manufacture, sale, or distribution of a commodity or service.",
+                example: "The editor needed to **excise** the entire second chapter from the manuscript.",
+                synonyms: "Cut out, delete, expunge, remove",
+                antonyms: "Put in, insert, add, implant"
             },
             {
-                word: "churlish",
-                emoji: "😠",
-                meaning: "Lacking politeness or good manners; lacking sensitivity; difficult to work with.",
-                example: "His **churlish** response to the kind suggestion ruined the meeting's positive atmosphere.",
-                synonyms: "Surly, ill-tempered, boorish, rude",
-                antonyms: "Courteous, civil, polite, well-mannered"
+                word: "exotic",
+                emoji: "🌴",
+                meaning: "Foreign; charmingly unfamiliar or strikingly unusual.",
+                example: "The greenhouse was filled with **exotic** tropical plants and birds.",
+                synonyms: "Foreign, colorful, unusual, striking",
+                antonyms: "Native, customary, familiar, commonplace"
             },
             {
-                word: "citadel",
-                emoji: "🏰",
-                meaning: "A fortress that overlooks and protects a city; any strong or commanding place.",
-                example: "The ancient **citadel** stood on the hill, providing a commanding view and defense for the town below.",
-                synonyms: "Fortress, stronghold, bulwark, bastion",
-                antonyms: "Outpost, settlement, open ground"
+                word: "haggard",
+                emoji: "😟",
+                meaning: "Thin, pale, and careworn as a result of worry or suffering; wild-looking.",
+                example: "After staying up three nights to finish the report, he looked tired and **haggard**.",
+                synonyms: "Drawn, gaunt, fatigued, wasted",
+                antonyms: "Refreshed, cheerful, blooming, hearty"
             },
             {
-                word: "collaborate",
-                emoji: "🤝",
-                meaning: "To work together, especially on a joint project.",
-                example: "The two research teams decided to **collaborate** on the complex experiment to speed up results.",
-                synonyms: "Team up, cooperate, join forces, work together",
-                antonyms: "Work alone, separate, disagree, compete"
+                word: "jaunty",
+                emoji: "🕺",
+                meaning: "Lively, easy, and carefree in manner; smart or trim in appearance.",
+                example: "He walked with a **jaunty** step, clearly pleased with the day's results.",
+                synonyms: "Unconcerned, sprightly, lighthearted, stylish",
+                antonyms: "Downcast, dejected, somber, grim"
             },
             {
-                word: "decree",
-                emoji: "👑",
-                meaning: "An order having the force of law; to issue an order; to command firmly or formally.",
-                example: "The principal issued a **decree** that all students must wear uniforms starting next semester.",
-                synonyms: "Proclamation, edict, mandate",
-                antonyms: "Request, suggestion, appeal, petition"
+                word: "juncture",
+                emoji: "🧩",
+                meaning: "A joining together; the point at which two things are joined; any important point in time.",
+                example: "At this critical **juncture**, we must choose between the two paths.",
+                synonyms: "Union, link, turning point, crisis",
+                antonyms: "Separation, division, detachment"
             },
             {
-                word: "discordant",
-                emoji: "🎼",
-                meaning: "Disagreement; lack of harmony; sounding harsh or unpleasant.",
-                example: "The piano was badly out of tune, producing a **discordant** sound that grated on everyone's ears.",
-                synonyms: "Clashing, jarring, grating, unharmonious",
-                antonyms: "Harmonious, melodious, in agreement, peaceful"
+                word: "menial",
+                emoji: "🧹",
+                meaning: "Lowly, humble, lacking importance or dignity; a person who does the humble and unpleasant tasks.",
+                example: "She took a **menial** job cleaning offices to pay for her college tuition.",
+                synonyms: "Lowly, servant, subservient, unskilled",
+                antonyms: "Elevated, dignified, important, master"
             },
             {
-                word: "evolve",
-                emoji: "🌱",
-                meaning: "To develop gradually; to rise to a higher level.",
-                example: "The smartphone market continues to **evolve** rapidly, introducing new features every year.",
-                synonyms: "Develop, progress, unfold, mature",
-                antonyms: "Regress, decline, remain, degenerate"
+                word: "parry",
+                emoji: "🛡️",
+                meaning: "To ward off, fend off, deflect, evade; a defensive movement in fencing or other sports.",
+                example: "The politician managed to **parry** the journalist's difficult question with a joke.",
+                synonyms: "Fend off, avoid, evade, ward off",
+                antonyms: "Confront, face, meet, engage"
             },
             {
-                word: "excerpt",
-                emoji: "📖",
-                meaning: "A passage taken from a book or document; to quote.",
-                example: "The teacher read a short **excerpt** from the novel to introduce the main characters.",
-                synonyms: "Portion, selection, extract, passage",
-                antonyms: "Entirety, whole, full text"
+                word: "predatory",
+                emoji: "🐅",
+                meaning: "Preying on, plundering, or piratical.",
+                example: "The lion is a **predatory** animal that hunts at night.",
+                synonyms: "Ravenous, looting, pillaging, rapacious",
+                antonyms: "Non-predatory, vegetarian, protective"
             },
             {
-                word: "grope",
-                emoji: "🔦",
-                meaning: "To search blindly and uncertainly; to examine or feel about with the hands.",
-                example: "I had to **grope** for the light switch after entering the dark, unfamiliar room.",
-                synonyms: "Fumble, cast about, root around, search",
-                antonyms: "See, look, locate easily, find"
+                word: "ravage",
+                emoji: "💣",
+                meaning: "To destroy, lay waste, ruin; ruinous damage, destruction.",
+                example: "The hurricane proceeded to **ravage** the coastal town with extreme wind and rain.",
+                synonyms: "Wreck, devastate, destroy, waste",
+                antonyms: "Protect, preserve, save, conserve"
             },
             {
-                word: "hover",
-                emoji: "🚁",
-                meaning: "To float or hang suspended over; to move back and forth uncertainly over or around.",
-                example: "The hummingbird began to **hover** near the flower, drinking the nectar with rapid wingbeats.",
-                synonyms: "Linger, drift, float, suspended",
-                antonyms: "Settle, descend, fall, sink"
+                word: "stance",
+                emoji: "🧍",
+                meaning: "A way of holding the body; an attitude or position on an issue.",
+                example: "The environmental group took a firm **stance** against deforestation.",
+                synonyms: "Posture, bearing, position, viewpoint",
+                antonyms: "N/A"
             },
             {
-                word: "jostle",
-                emoji: "🏃",
-                meaning: "To make or force one's way by pushing or elbowing; to vie for position.",
-                example: "The passengers had to **jostle** their way through the crowded subway car to get off at their stop.",
-                synonyms: "Push, shove, bump, elbow",
-                antonyms: "Avoid, leave alone, retreat, step aside"
+                word: "tawdry",
+                emoji: "💎",
+                meaning: "Showy and flashy but lacking in good taste; cheap and poor in quality.",
+                example: "She wore a lot of **tawdry** jewelry that looked like cheap plastic.",
+                synonyms: "Loud, gaudy, flashy, garish",
+                antonyms: "Tasteful, sophisticated, refined, elegant"
             },
             {
-                word: "laggard",
-                emoji: "🐢",
-                meaning: "A person who moves slowly or falls behind; slow to move or act.",
-                example: "The **laggard** of the group held up the entire hiking trip, moving at a snail's pace.",
-                synonyms: "Slowpoke, straggler, dawdler, sluggish",
-                antonyms: "Leader, pioneer, swift, fast"
+                word: "turncoat",
+                emoji: "🐍",
+                meaning: "A person who switches to an opposing side or party; a renegade.",
+                example: "The general was branded a **turncoat** after defecting to the enemy during the war.",
+                synonyms: "Traitor, deserter, renegade, defector",
+                antonyms: "Loyalist, steadfast, adherent, patriot"
             },
             {
-                word: "plaudits",
-                emoji: "👏",
-                meaning: "Applause; enthusiastic praise or approval.",
-                example: "The brilliant musician received **plaudits** from the standing-room-only crowd after his masterful performance.",
-                synonyms: "Acclaim, cheers, accolades, ovation",
-                antonyms: "Boos, disapproval, scorn, criticism"
+                word: "unassuming",
+                emoji: "🧘",
+                meaning: "Not putting on airs, modest, humble.",
+                example: "Despite his great wealth, he remained **unassuming** and drove an old car.",
+                synonyms: "Modest, humble, unpretentious, reserved",
+                antonyms: "Pretentious, arrogant, boastful, flashy"
             },
             {
-                word: "preclude",
-                emoji: "🛑",
-                meaning: "To make impossible, prevent, shut out.",
-                example: "The sudden heavy rain was enough to **preclude** us from continuing our outdoor picnic.",
-                synonyms: "Forestall, prevent, hinder, prohibit",
-                antonyms: "Permit, allow, facilitate, assist"
+                word: "wallow",
+                emoji: "🐷",
+                meaning: "To roll about in a lazy, clumsy, or helpless way; to overindulge in; a wet, muddy, or dusty area used by animals as a sort of bath.",
+                example: "The pigs liked to **wallow** in the cool mud during the summer heat.",
+                synonyms: "Bask in, revel in, roll in, luxuriate",
+                antonyms: "Dry out, ascend, avoid, stand up"
             },
             {
-                word: "revert",
-                emoji: "🔙",
-                meaning: "To return, go back to an earlier condition.",
-                example: "After the brief power outage, the computer automatically **revert** to its default settings.",
-                synonyms: "Return, relapse, regress, go back",
-                antonyms: "Progress, advance, proceed, improve"
-            },
-            {
-                word: "rubble",
-                emoji: "🧱",
-                meaning: "Broken stone or bricks; ruins.",
-                example: "After the demolition crew finished their work, the old building was reduced to a pile of **rubble**.",
-                synonyms: "Debris, wreckage, ruins, fragments",
-                antonyms: "Structure, building, intact material"
-            },
-            {
-                word: "servile",
-                emoji: "🤵",
-                meaning: "Of or relating to a slave; behaving like or suitable for a servant; submissive.",
-                example: "The assistant's **servile** deference to his demanding boss was uncomfortable for everyone else to witness.",
-                synonyms: "Fawning, cringing, groveling, slavish",
-                antonyms: "Masterly, domineering, assertive, independent"
-            },
-            {
-                word: "vigil",
-                emoji: "🕯️",
-                meaning: "A watch, especially at night; any period of watchful attention.",
-                example: "The parents kept a long, anxious **vigil** at the hospital bedside of their sick child.",
-                synonyms: "Lookout, watch, observance, surveillance",
-                antonyms: "Neglect, sleep, inattention"
-            },
-            {
-                word: "wrangle",
-                emoji: "🗣️",
-                meaning: "To quarrel or argue in a noisy, angry way; to obtain by argument; a noisy quarrel.",
-                example: "The cowboys had to **wrangle** the cattle out of the narrow corral before the storm arrived.",
-                synonyms: "Squabble, dispute, bicker, hassle",
-                antonyms: "Agree, concur, yield, compromise"
+                word: "waver",
+                emoji: "🌬️",
+                meaning: "To move to and fro, become unsteady; to show lack of firmness or decision.",
+                example: "The flashlight beam began to **waver** as the battery power ran low.",
+                synonyms: "Hesitate, falter, tremble, fluctuate",
+                antonyms: "Stand firm, remain steady, settle, stabilize"
             }
         ];
 
@@ -243,6 +242,7 @@
             if (isError) {
                 messageBox.className = 'fixed bottom-4 right-4 p-4 text-sm font-medium rounded-lg shadow-lg transition-opacity duration-300 z-50 bg-red-100 text-red-700';
             } else {
+                // If it's a success message, we now rely on the caller not calling showMessage on success.
                 messageBox.className = 'fixed bottom-4 right-4 p-4 text-sm font-medium rounded-lg shadow-lg transition-opacity duration-300 z-50 bg-green-100 text-green-700';
             }
 
@@ -261,30 +261,29 @@
          * @param {string} word The vocabulary word (used as the base filename).
          */
         function playAudio(word) {
+            // Generates the filename like 'acme.mp3'
             const filename = `${word}.mp3`;
 
             // 1. Stop any currently playing audio
             if (activeAudio) {
                 activeAudio.pause();
-                activeAudio.currentTime = 0; 
+                activeAudio.currentTime = 0; // Rewind for next time
                 activeAudio = null;
             }
 
-            // 2. Create the new audio object
+            // 2. Create the new audio object and set it as active
             const audio = new Audio(filename);
-            
-            // 3. Set the new audio as the active one
             activeAudio = audio;
 
-            // 4. Play the audio
+            // 3. Play the audio
             audio.play()
                 .then(() => {
-                    showMessage(`Attempting to play audio: ${filename}. (File must be available on server)`);
+                    // Success: Message is intentionally suppressed here (per prior request).
                 })
                 .catch(error => {
                     console.error("Audio playback failed:", error);
                     activeAudio = null;
-                    let errorMessage = `Failed to play ${filename}. Ensure the audio file is available.`;
+                    let errorMessage = `Failed to play ${filename}. Ensure the audio file is available in the same directory.`;
                     
                     if (error.name === 'NotAllowedError') {
                         errorMessage = "Playback blocked by browser. Try interacting with the page first.";
@@ -293,7 +292,7 @@
                     showMessage(errorMessage, true);
                 });
 
-            // Clear activeAudio when the current one finishes
+            // 4. Clear activeAudio when the current one finishes
             audio.onended = () => {
                 if (activeAudio === audio) {
                     activeAudio = null;

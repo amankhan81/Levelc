@@ -242,6 +242,7 @@
             if (isError) {
                 messageBox.className = 'fixed bottom-4 right-4 p-4 text-sm font-medium rounded-lg shadow-lg transition-opacity duration-300 z-50 bg-red-100 text-red-700';
             } else {
+                // If it's a success message, we now rely on the caller not calling showMessage on success.
                 messageBox.className = 'fixed bottom-4 right-4 p-4 text-sm font-medium rounded-lg shadow-lg transition-opacity duration-300 z-50 bg-green-100 text-green-700';
             }
 
@@ -260,7 +261,7 @@
          * @param {string} word The vocabulary word (used as the base filename).
          */
         function playAudio(word) {
-            // Generates the filename like 'accord.mp3'
+            // Generates the filename like 'amplify.mp3'
             const filename = `${word}.mp3`;
 
             // 1. Stop any currently playing audio
@@ -277,7 +278,7 @@
             // 3. Play the audio
             audio.play()
                 .then(() => {
-                    showMessage(`Attempting to play audio: ${filename}. (File must be available in the same folder)`);
+                    // Success: Message is intentionally suppressed here.
                 })
                 .catch(error => {
                     console.error("Audio playback failed:", error);
