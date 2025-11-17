@@ -80,7 +80,7 @@
       </optiongroup>
       <optiongroup name="bottombaroptions">
         <options>
-          <option name="bottombar_enabled" value="false" />
+          <option name="bottombar_enabled" value="true" />
         </options>
       </optiongroup>
     </optiongroups>
@@ -1288,8 +1288,23 @@
           <links>
             <slidelink slideid="_player.5kNnE8QefaO.6F7W25MVHry" displaytext="Home" expand="false" type="slide" />
             <slidelink slideid="_player.5kNnE8QefaO.6KurKOTfeOV" displaytext="About&#xA;" expand="false" type="slide" />
-            <slidelink slideid="_player.5kNnE8QefaO.5XGtTH4lzC4" displaytext="U-5" expand="false" type="slide" />
+            <slidelink slideid="_player.5kNnE8QefaO.5XGtTH4lzC4" displaytext="U-5 done" expand="false" type="slide" />
+            <slidelink slideid="_player.5kNnE8QefaO.5qrLKtjWAN7" displaytext="U-3 done" expand="false" type="slide" />
             <slidelink slideid="_player.5kNnE8QefaO.6k8DhsnlFU7" displaytext="U-6" expand="false" type="slide" />
+            <slidelink slideid="_player.5kNnE8QefaO.69LPWrze1OM" displaytext="U-7 done" expand="false" type="slide" />
+            <slidelink slideid="_player.5kNnE8QefaO.6VZk6ttKHtz" displaytext="U-4 Done" expand="false" type="slide" />
+            <slidelink slideid="_player.5kNnE8QefaO.6SStK1pm4GQ" displaytext="U-8 done" expand="false" type="slide" />
+            <slidelink slideid="_player.5kNnE8QefaO.5VRlCg2vMKt" displaytext="U-9 done" expand="false" type="slide" />
+            <slidelink slideid="_player.5kNnE8QefaO.6Qku8pGIGhe" displaytext="U-1 Done" expand="false" type="slide" />
+            <slidelink slideid="_player.5kNnE8QefaO.6GoSQgTQFwV" displaytext="Quiz U6" expand="false" type="slide" />
+            <slidelink slideid="_player.5kNnE8QefaO.6chWC1KR0qT" displaytext="Quiz U8" expand="false" type="slide" />
+            <slidelink slideid="_player.5kNnE8QefaO.5qiKYRGbn90" displaytext="U-2 done" expand="false" type="slide" />
+            <slidelink slideid="_player.5kNnE8QefaO.6PuEUFGt62p" displaytext="U-11" expand="false" type="slide" />
+            <slidelink slideid="_player.5kNnE8QefaO.6oKbmsp4TRS" displaytext="U-12" expand="false" type="slide" />
+            <slidelink slideid="_player.5kNnE8QefaO.6e4jfqXNi2H" displaytext="U-13" expand="false" type="slide" />
+            <slidelink slideid="_player.5kNnE8QefaO.5obesPFMch2" displaytext="U-14" expand="false" type="slide" />
+            <slidelink slideid="_player.5kNnE8QefaO.64D9DDtRmJS" displaytext="U-15" expand="false" type="slide" />
+            <slidelink slideid="_player.5kNnE8QefaO.6VtkeZZxQ86" displaytext="U-10 done" expand="false" type="slide" />
           </links>
         </slidelink>
       </links>
